@@ -21,6 +21,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    <script>
+        // Инициализация VK Bridge перенесена на самый верх для мгновенного ответа клиенту ВКонтакте
+        if (typeof vkBridge !== 'undefined') {
+            vkBridge.send('VKWebAppInit');
+        }
+    </script>
 
     <style>
         body { 
@@ -134,7 +140,7 @@
 
             <div class="space-y-3 mb-6">
                 <!-- Кнопка Ориентировки (НОВАЯ) -->
-                <a href="https://t.me/pso_tyneodin" target="_blank" class="w-full bg-squad text-white p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-squad_light transition-all shadow-md hover:shadow-lg flex items-center justify-between group">
+                <a href="https://vk.ru/album-32585861_147787229" target="_blank" class="w-full bg-squad text-white p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-squad_light transition-all shadow-md hover:shadow-lg flex items-center justify-between group">
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-images text-xl"></i>
@@ -148,8 +154,8 @@
                     <i class="fa-solid fa-share-nodes mr-3 text-xl group-hover:-rotate-12 transition-transform"></i> Поделиться приложением
                 </button>
                 
-                <a href="https://vk.ru/shishin_85" target="_blank" class="w-full bg-slate-100 text-gray-500 py-3 rounded-xl font-bold uppercase tracking-wider hover:bg-slate-200 transition-colors flex items-center justify-center text-xs">
-                    <i class="fa-solid fa-bug mr-2"></i> Сообщить об ошибке (Разработчик)
+                <a href="https://vk.ru/shishin_85" target="_blank" class="w-full bg-slate-50 text-gray-500 py-3 rounded-xl font-bold uppercase tracking-wider hover:bg-slate-100 transition-colors flex items-center justify-center text-[10px] sm:text-xs border border-gray-200 shadow-sm">
+                    <i class="fa-solid fa-laptop-code mr-2"></i> Тех. поддержка (Разработчик)
                 </a>
             </div>
             
@@ -169,6 +175,11 @@
                 </div>
                 <h2 class="text-xl font-black text-gray-900 uppercase">Что делать при пропаже?</h2>
             </div>
+
+            <div class="bg-red-50/80 border border-red-200 text-red-900 p-4 rounded-2xl text-sm shadow-sm mb-6">
+                <strong class="uppercase tracking-wide font-black text-red-700 block mb-1">Помните про «Золотой час»!</strong> 
+                Правила «трёх суток» не существует. Заявление обязаны принять немедленно, независимо от места пропажи. Чем раньше начнется поиск, тем выше шансы!
+            </div>
             
             <div class="space-y-4 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-squad before:to-slate-100">
                 
@@ -176,8 +187,8 @@
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                     <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">1</div>
                     <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
-                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Заявление в полицию</h3>
-                        <p class="text-sm font-medium text-gray-600">Обязательно обратитесь в ближайшее отделение или по телефону <strong class="text-red-600">112</strong>. Заявление обязаны принять немедленно.</p>
+                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Заявление в полицию (112)</h3>
+                        <p class="text-sm font-medium text-gray-600">Сразу звоните 112 или идите в отделение. Не ждите ни минуты. Заявление может подать любой гражданин.</p>
                     </div>
                 </div>
 
@@ -186,7 +197,7 @@
                     <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">2</div>
                     <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
                         <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Заявка в ПСО</h3>
-                        <p class="text-sm font-medium text-gray-600">Горячая линия ПСО «Ты не один»: <a href="tel:+79115056898" class="text-squad font-black hover:underline block mt-1">+7 911 505-68-98</a> Дорога каждая минута!</p>
+                        <p class="text-sm font-medium text-gray-600">Горячая линия ПСО «Ты не один»: <a href="tel:+79115056898" target="_blank" class="text-squad font-black hover:underline block mt-1">+7 911 505-68-98</a> Сообщите инфоргу всю правду, без утайки.</p>
                     </div>
                 </div>
 
@@ -194,8 +205,8 @@
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                     <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">3</div>
                     <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
-                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Сбор информации</h3>
-                        <p class="text-sm font-medium text-gray-600">Подготовьте приметы, описание одежды, свежее фото. Отвечайте честно, не утаивайте информацию.</p>
+                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Не затаптывайте следы</h3>
+                        <p class="text-sm font-medium text-gray-600">Хаотичный поиск вредит. Согласуйте действия с координатором отряда, чтобы не уничтожить следы пропавшего.</p>
                     </div>
                 </div>
 
@@ -203,12 +214,11 @@
                 <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                     <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">4</div>
                     <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
-                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Действия дома</h3>
+                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Важные правила</h3>
                         <ul class="list-none text-sm space-y-1 font-medium text-gray-600">
-                            <li><i class="fa-solid fa-check text-green-500 mr-1"></i> Кто-то должен быть дома.</li>
-                            <li><i class="fa-solid fa-xmark text-red-500 mr-1"></i> Не публикуйте личные номера в сети.</li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-1"></i> В ТЦ требуйте «громкий поиск».</li>
-                            <li><i class="fa-solid fa-check text-green-500 mr-1"></i> Обращайтесь к «Островкам безопасности» в магазинах.</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-1"></i> Кто-то должен оставаться дома.</li>
+                            <li><i class="fa-solid fa-xmark text-red-500 mr-1"></i> Не обращайтесь к экстрасенсам.</li>
+                            <li><i class="fa-solid fa-xmark text-red-500 mr-1"></i> Не публикуйте свой личный номер.</li>
                         </ul>
                     </div>
                 </div>
@@ -237,9 +247,8 @@
                             <div>
                                 <h4 class="font-black text-gray-900 uppercase tracking-wide mb-2">Что взять с собой:</h4>
                                 <ul class="grid grid-cols-2 gap-2">
-                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-mobile-screen text-squad w-5 text-center mr-1"></i> Телефон</li>
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-mobile-screen text-squad w-5 text-center mr-1"></i> Телефон (112)</li>
                                     <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-battery-full text-squad w-5 text-center mr-1"></i> Powerbank</li>
-                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-compass text-squad w-5 text-center mr-1"></i> Компас</li>
                                     <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-vest text-squad w-5 text-center mr-1"></i> Яркая одежда</li>
                                     <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-bottle-water text-squad w-5 text-center mr-1"></i> Вода и еда</li>
                                     <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-fire text-squad w-5 text-center mr-1"></i> Спички</li>
@@ -250,8 +259,8 @@
                             <div class="bg-red-50 p-4 rounded-xl border border-red-100">
                                 <h4 class="font-black text-red-700 uppercase mb-2"><i class="fa-solid fa-circle-exclamation mr-1"></i> Если заблудились:</h4>
                                 <ul class="list-disc pl-5 font-bold space-y-1 text-red-900">
-                                    <li>ОСТАВАЙТЕСЬ НА МЕСТЕ. Ищите открытое пространство.</li>
-                                    <li>Позвоните 112. Ждите помощи.</li>
+                                    <li>ОСТАВАЙТЕСЬ НА МЕСТЕ.</li>
+                                    <li>Позвоните 112 и ждите помощи.</li>
                                     <li>Отвечайте шумом на шум (свисток эффективнее голоса).</li>
                                 </ul>
                             </div>
@@ -262,25 +271,37 @@
                 <!-- Город -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                     <button onclick="toggleAccordion('acc-city')" class="w-full p-5 text-left font-black hover:bg-slate-50 flex justify-between items-center text-gray-900 uppercase text-sm tracking-wide transition-colors">
-                        <div class="flex items-center"><i class="fa-solid fa-child-reaching text-orange-500 mr-3 text-lg"></i> Дети в городе (ТЦ, улица)</div>
+                        <div class="flex items-center"><i class="fa-solid fa-child-reaching text-orange-500 mr-3 text-lg"></i> Дети в городе</div>
                         <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-chevron-down text-gray-600"></i></div>
                     </button>
                     <div id="acc-city" class="accordion-content bg-slate-50 px-5 border-t border-gray-100">
                         <div class="py-5 text-sm space-y-4 font-medium text-gray-700">
                             <div>
-                                <h4 class="font-black text-orange-600 uppercase tracking-wide mb-2">Правило трех "О":</h4>
-                                <div class="bg-white p-4 rounded-xl shadow-sm border border-orange-200">
-                                    <ul class="list-none space-y-3 font-black text-gray-900">
-                                        <li class="flex items-center"><i class="fa-solid fa-circle-stop text-orange-500 text-xl w-6 mr-2"></i> ОСТАНОВИСЬ — стой там, где потерялся.</li>
-                                        <li class="flex items-center"><i class="fa-solid fa-eye text-orange-500 text-xl w-6 mr-2"></i> ОГЛЯНИСЬ — посмотри вокруг.</li>
-                                        <li class="flex items-center"><i class="fa-solid fa-bullhorn text-orange-500 text-xl w-6 mr-2"></i> ОКРИКНИ — позови родителей.</li>
+                                <h4 class="font-black text-orange-600 uppercase tracking-wide mb-2">Правило трех "О" (если потерялся):</h4>
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-orange-200">
+                                    <ul class="list-none space-y-2 font-black text-gray-900 text-xs sm:text-sm">
+                                        <li class="flex items-center"><i class="fa-solid fa-circle-stop text-orange-500 text-lg w-6 mr-1"></i> ОСТАНОВИСЬ — стой на месте.</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-eye text-orange-500 text-lg w-6 mr-1"></i> ОГЛЯНИСЬ — посмотри вокруг.</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-bullhorn text-orange-500 text-lg w-6 mr-1"></i> ОКРИКНИ — позови родителей.</li>
                                     </ul>
                                 </div>
                             </div>
-                            <ul class="list-disc pl-5 space-y-1 bg-white p-4 rounded-xl shadow-sm border border-gray-200 mt-4">
-                                <li>Просить помощь только у того, кто работает в этом месте, полиции или взрослых с детьми.</li>
-                                <li>Ни с кем не уходить на улицу!</li>
-                                <li>Искать знак «Островок безопасности» (оранжевая капля) в супермаркетах и банках.</li>
+
+                            <div>
+                                <h4 class="font-black text-red-600 uppercase tracking-wide mb-2 mt-4">Правило трех "Н" (с чужими):</h4>
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-red-200">
+                                    <ul class="list-none space-y-2 font-black text-gray-900 text-xs sm:text-sm">
+                                        <li class="flex items-center"><i class="fa-solid fa-comment-slash text-red-500 text-lg w-6 mr-1"></i> НЕ разговаривай с незнакомцами.</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-person-walking-arrow-right text-red-500 text-lg w-6 mr-1"></i> НЕ уходи с чужими людьми.</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-car text-red-500 text-lg w-6 mr-1"></i> НЕ садись в чужую машину.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <ul class="list-disc pl-5 space-y-1.5 bg-white p-4 rounded-xl shadow-sm border border-gray-200 mt-4 text-xs sm:text-sm">
+                                <li>Придумайте с ребенком <strong>слово-пароль</strong> на экстренный случай.</li>
+                                <li>Научите кричать: <em>«Я вас не знаю! Вы мне чужой!»</em></li>
+                                <li>Объясните, что такое <strong>«Островок безопасности»</strong> (оранжевая капля) в магазинах «Пятёрочка», «Перекрёсток» и Сбербанке.</li>
                             </ul>
                         </div>
                     </div>
@@ -289,7 +310,7 @@
                 <!-- Деменция -->
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                     <button onclick="toggleAccordion('acc-elderly')" class="w-full p-5 text-left font-black hover:bg-slate-50 flex justify-between items-center text-gray-900 uppercase text-sm tracking-wide transition-colors">
-                        <div class="flex items-center"><i class="fa-solid fa-person-cane text-purple-500 mr-3 text-lg"></i> Пожилые люди (Деменция)</div>
+                        <div class="flex items-center"><i class="fa-solid fa-person-cane text-purple-500 mr-3 text-lg"></i> Пожилые (Деменция)</div>
                         <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-chevron-down text-gray-600"></i></div>
                     </button>
                     <div id="acc-elderly" class="accordion-content bg-slate-50 px-5 border-t border-gray-100">
@@ -301,6 +322,9 @@
                                 <li class="bg-white p-3 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-tags text-purple-500 w-6 text-center mr-2"></i> Бирки с контактами на всей одежде.</li>
                                 <li class="bg-white p-3 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-regular fa-images text-purple-500 w-6 text-center mr-2"></i> Фото-инструкции дома у выхода.</li>
                             </ul>
+                            <div class="bg-purple-50 p-3 rounded-xl border border-purple-100 mt-2 text-xs">
+                                <strong>Если пропал:</strong> Ищите на маршрутах, по которым человек передвигался много лет (старая работа, прежнее место жительства).
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -323,7 +347,7 @@
                         <i class="fa-solid fa-phone-volume text-3xl text-red-500 animate-bounce"></i>
                     </div>
                     <h3 class="font-black text-gray-500 uppercase tracking-widest text-xs mb-2">Горячая линия (24/7)</h3>
-                    <a href="tel:+79115056898" class="text-3xl font-black text-gray-900 hover:text-red-600 transition-colors tracking-tight">+7 911 505-68-98</a>
+                    <a href="tel:+79115056898" target="_blank" class="text-3xl font-black text-gray-900 hover:text-red-600 transition-colors tracking-tight">+7 911 505-68-98</a>
                     <p class="text-xs text-gray-500 mt-3 font-bold uppercase px-4 bg-slate-50 py-2 rounded-lg border border-slate-100">Любой может позвонить и запросить помощь!</p>
                 </div>
 
@@ -351,13 +375,19 @@
                 <a href="https://vk.com/pso_tyneodin" target="_blank" class="block w-full bg-[#0077FF] text-white text-center p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-[#0066DD] transition-all shadow-md hover:shadow-lg flex items-center justify-center">
                     <i class="fa-brands fa-vk mr-3 text-xl"></i> Написать во ВКонтакте
                 </a>
+                
+                <div class="pt-4 mt-2 border-t border-gray-200">
+                    <a href="https://vk.ru/shishin_85" target="_blank" class="w-full bg-slate-50 text-gray-500 py-3 rounded-xl font-bold uppercase tracking-wider hover:bg-slate-100 transition-colors flex items-center justify-center text-[10px] sm:text-xs border border-gray-200 shadow-sm">
+                        <i class="fa-solid fa-laptop-code mr-2"></i> Тех. поддержка (Разработчик)
+                    </a>
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- Плавающая кнопка SOS -->
-    <a href="tel:+79115056898" class="fixed bottom-[95px] right-4 sm:right-6 w-16 h-16 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 animate-pulse z-50 border-2 border-white ring-4 ring-red-500/20">
+    <a href="tel:+79115056898" target="_blank" class="fixed bottom-[95px] right-4 sm:right-6 w-16 h-16 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 animate-pulse z-50 border-2 border-white ring-4 ring-red-500/20">
         <i class="fa-solid fa-phone-volume text-xl mb-0.5"></i>
         <span class="text-[10px] font-black uppercase tracking-widest leading-none">SOS</span>
     </a>
@@ -394,16 +424,6 @@
     </nav>
 
     <script>
-        if (typeof vkBridge !== 'undefined') {
-            vkBridge.send('VKWebAppInit')
-                .then((data) => { 
-                    console.log('VK Bridge успешно инициализирован'); 
-                })
-                .catch((error) => {
-                    console.error('Ошибка инициализации VK Bridge', error);
-                });
-        }
-
         function openTab(tabId, tabName) {
             // Скрываем все вкладки
             document.querySelectorAll('.tab-content').forEach(tab => {
