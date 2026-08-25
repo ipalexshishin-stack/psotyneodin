@@ -19,6 +19,9 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+
     <style>
         body { 
             -webkit-tap-highlight-color: transparent; 
@@ -374,7 +377,7 @@
             <!-- 2. Памятки -->
             <button onclick="openTab('rules', 'Памятки')" id="nav-rules" class="nav-btn flex flex-col items-center justify-center text-gray-400 hover:text-squad transition-colors group">
                 <div class="nav-icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 group-hover:bg-slate-100 transition-colors">
-                    <i class="fa-solid fa-shield-halved text-xl"></i>
+                    <i class="fa-solid fa-book-medical text-xl"></i>
                 </div>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Памятки</span>
             </button>
@@ -391,6 +394,16 @@
     </nav>
 
     <script>
+        if (typeof vkBridge !== 'undefined') {
+            vkBridge.send('VKWebAppInit')
+                .then((data) => { 
+                    console.log('VK Bridge успешно инициализирован'); 
+                })
+                .catch((error) => {
+                    console.error('Ошибка инициализации VK Bridge', error);
+                });
+        }
+
         function openTab(tabId, tabName) {
             // Скрываем все вкладки
             document.querySelectorAll('.tab-content').forEach(tab => {
