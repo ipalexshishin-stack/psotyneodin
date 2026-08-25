@@ -1,302 +1,466 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ПСО «Ты не один»</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-body {
-font-family: 'Inter', sans-serif;
-background-color: var(--tg-theme-bg-color, #f3f4f6);
-color: var(--tg-theme-text-color, #111827);
--webkit-tap-highlight-color: transparent;
-}
-.bg-tg-secondary {
-background-color: var(--tg-theme-secondary-bg-color, #ffffff);
-}
-.text-tg-hint {
-color: var(--tg-theme-hint-color, #6b7280);
-}
-.btn-tg {
-background-color: var(--tg-theme-button-color, #2563eb);
-color: var(--tg-theme-button-text-color, #ffffff);
-}
-.tab-content {
-display: none;
-animation: fadeIn 0.3s ease-in-out;
-}
-.tab-content.active {
-display: block;
-}
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(5px); }
-to { opacity: 1; transform: translateY(0); }
-}
-.accordion-content {
-max-height: 0;
-overflow: hidden;
-transition: max-height 0.3s ease-out;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Поисковый отряд "Ты не один"</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        squad: '#163269', /* Строгий темно-синий цвет ПСО */
+                        squad_light: '#254a96'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            -webkit-tap-highlight-color: transparent; 
+            font-family: 'Inter', sans-serif; 
+        }
+        .tab-content { display: none; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .tab-content.active { display: block; }
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .accordion-content.open { max-height: 1500px; transition: max-height 0.6s ease-in; }
+        .pb-safe { padding-bottom: calc(env(safe-area-inset-bottom) + 15px); }
+        
+        /* Стилизация активного пункта меню */
+        .nav-btn.active { color: #163269; }
+        .nav-btn.active .nav-icon-bg { background-color: #eff6ff; }
+    </style>
 </head>
-<body class="antialiased pb-20">
-<header class="sticky top-0 z-50 shadow-md">
-<!-- Соцсети и контакты (закреплены сверху) -->
-<div class="bg-gray-800 text-gray-200 text-[10px] sm:text-xs py-1.5 px-4 flex justify-between items-center">
-<a href="https://t.me/alexshishin" target="_blank" class="flex items-center hover:text-white transition-colors">
-<svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
-Разработчик
-</a>
-<div class="flex space-x-4">
-<a href="https://max.ru/channel_psotyneodin" target="_blank" class="flex items-center hover:text-white transition-colors font-medium">Max</a>
-<a href="https://vk.ru/im/channels/-233922362" target="_blank" class="flex items-center hover:text-white transition-colors font-medium">ВКонтакте</a>
-</div>
-</div>
-<div class="bg-red-600 text-white p-4">
-<div class="flex items-center justify-between">
-<div>
-<h1 class="text-xl font-bold uppercase tracking-wide">ПСО «Ты не один»</h1>
-<p class="text-xs opacity-90">Поисково-спасательный отряд</p>
-</div>
-<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-</svg>
-</div>
-</div>
-</header>
-<main class="p-4 max-w-md mx-auto">
-<!-- Вкладка 1: Экстренно (SOS) -->
-<div id="tab-sos" class="tab-content active">
-<div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg mb-6 shadow-sm">
-<h2 class="text-red-800 font-bold text-lg mb-1">Пропал человек?</h2>
-<p class="text-red-700 text-sm font-medium">Время — главный враг. Правила «трех суток» не существует!</p>
-</div>
-<h3 class="font-bold text-lg mb-3">Первые действия:</h3>
-<div class="space-y-4">
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100">
-<div class="flex items-center mb-2">
-<div class="bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">1</div>
-<h4 class="font-bold">Звоните 112</h4>
-</div>
-<p class="text-sm text-gray-600 ml-11">Немедленно сообщите в полицию. Заявление обязаны принять сразу, независимо от срока пропажи и родства.</p>
-</div>
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100">
-<div class="flex items-center mb-2">
-<div class="bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">2</div>
-<h4 class="font-bold">Звоните добровольцам</h4>
-</div>
-<p class="text-sm text-gray-600 ml-11 mb-3">После полиции оставьте заявку в поисковый отряд.</p>
-<a href="tel:+79115056898" class="ml-11 inline-flex items-center bg-red-600 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-md active:bg-red-700">
-<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-+7 (911) 505-68-98
-</a>
-</div>
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100">
-<div class="flex items-center mb-2">
-<div class="bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">3</div>
-<h4 class="font-bold">Соберите информацию</h4>
-</div>
-<ul class="text-sm text-gray-600 ml-11 list-disc pl-4 space-y-1">
-<li>Во что был одет (особые приметы).</li>
-<li>Что имел при себе (телефон, ключи).</li>
-<li>Свежая фотография (максимум полугодовой давности).</li>
-<li>Не скрывайте от полиции и ПСО конфликты или привычки пропавшего.</li>
-</ul>
-</div>
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100">
-<div class="flex items-center mb-2">
-<div class="bg-red-100 text-red-600 rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">4</div>
-<h4 class="font-bold">Оставайтесь дома</h4>
-</div>
-<p class="text-sm text-gray-600 ml-11">Кто-то обязательно должен оставаться дома на случай, если пропавший вернётся.</p>
-</div>
-</div>
-</div>
-<!-- Вкладка 2: Инструкции -->
-<div id="tab-instructions" class="tab-content">
-<h2 class="text-xl font-bold mb-4">Инструкции по поиску</h2>
-<!-- Аккордеон 1: Ребенок в толпе/ТЦ -->
-<div class="bg-tg-secondary rounded-xl shadow-sm mb-3 border border-gray-100 overflow-hidden">
-<button class="w-full text-left p-4 font-bold flex justify-between items-center focus:outline-none" onclick="toggleAccordion('acc1')">
-Ребенок потерялся в ТЦ/толпе
-<svg id="icon-acc1" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-</button>
-<div id="acc1" class="accordion-content bg-gray-50">
-<div class="p-4 pt-0 text-sm space-y-3">
-<p><strong>Шаг 1. Немедленный осмотр:</strong> Осмотритесь в радиусе 50-100 метров. Проверьте витрины и аттракционы.</p>
-<p><strong>Шаг 2. «Громкий поиск»:</strong> Не ищите молча! Громко кричите: <em>«Я ищу мальчика 5 лет, рост 110 см, синяя куртка, красная шапка!»</em>. Окружающие подключатся к поиску.</p>
-<p><strong>Шаг 3. Подключение служб:</strong> Обратитесь к охране ТЦ, чтобы перекрыть выходы и объявить по громкой связи. Звоните 112.</p>
-<div class="bg-blue-100 text-blue-800 p-3 rounded mt-2 text-xs">
-<strong>Правило для ребенка:</strong> Научите его правилу — "Потерялся — стой на месте!". Просить помощь можно у охранника, продавца или взрослого с детьми.
-</div>
-</div>
-</div>
-</div>
-<!-- Аккордеон 2: Человек с деменцией -->
-<div class="bg-tg-secondary rounded-xl shadow-sm mb-3 border border-gray-100 overflow-hidden">
-<button class="w-full text-left p-4 font-bold flex justify-between items-center focus:outline-none" onclick="toggleAccordion('acc2')">
-Пропал пожилой с деменцией
-<svg id="icon-acc2" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-</button>
-<div id="acc2" class="accordion-content bg-gray-50">
-<div class="p-4 pt-0 text-sm space-y-3">
-<p>Не тратьте время на самостоятельные обходы. Сразу звоните в 112 и ПСО.</p>
-<p>Оповестите соседей и знакомых в районе — возможно они видели его, но не знали, что он потерялся.</p>
-<p>Вспомните прошлые маршруты: места старой работы, дом детства, привычки.</p>
-<p class="font-semibold text-red-600">Если вы встретили дезориентированного пожилого человека:</p>
-<ul class="list-disc pl-4">
-<li>Не покупайте ему билет на транспорт.</li>
-<li>Звоните 112.</li>
-<li>Сфотографируйте его и запишите, куда его повезут службы.</li>
-</ul>
-</div>
-</div>
-</div>
-<!-- Аккордеон 3: Если потерялся в лесу -->
-<div class="bg-tg-secondary rounded-xl shadow-sm mb-3 border border-gray-100 overflow-hidden">
-<button class="w-full text-left p-4 font-bold flex justify-between items-center focus:outline-none" onclick="toggleAccordion('acc3')">
-Правила: если ты заблудился в лесу
-<svg id="icon-acc3" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-</button>
-<div id="acc3" class="accordion-content bg-gray-50">
-<div class="p-4 pt-0 text-sm space-y-2">
-<ul class="list-decimal pl-4 space-y-1">
-<li><strong>Правило трёх «О»:</strong> остановись, оглянись, окрикни!</li>
-<li>Звони 112 и береги заряд телефона.</li>
-<li>Отвечай шумом на шум (стучи палкой по дереву).</li>
-<li>Не ешь лесные ягоды/грибы.</li>
-<li>Не сиди на голой земле (сядь на пенек или бревно).</li>
-<li>Не залезай на деревья (риск травмы).</li>
-<li><strong>Никогда не подходи к водоёмам!</strong></li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<!-- Вкладка 3: Добровольцам -->
-<div id="tab-volunteer" class="tab-content">
-<h2 class="text-xl font-bold mb-4">Хочешь помочь в поиске?</h2>
-<div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-6 shadow-sm">
-<p class="text-yellow-800 text-sm">Неправильная помощь может стоить человеку жизни. Хаотичный поиск = вред.</p>
-</div>
-<div class="space-y-4">
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100">
-<h4 class="font-bold mb-2 text-indigo-700">1. Ищите инфорга (координатора)</h4>
-<p class="text-sm text-gray-700">Прежде чем выезжать, свяжитесь с информационным координатором поиска (указан в ориентировке). Скажите, есть ли машина, снаряжение и опыт. Действуйте только по его задаче.</p>
-</div>
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100">
-<h4 class="font-bold mb-2 text-indigo-700">2. Не затаптывайте следы</h4>
-<p class="text-sm text-gray-700">Особенно зимой! Следы, вещи, ветки — открытая книга для кинологов. Передвигайтесь аккуратно, не трогайте подозрительные предметы — фотографируйте их.</p>
-</div>
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100">
-<h4 class="font-bold mb-2 text-indigo-700">3. Информационная помощь</h4>
-<p class="text-sm text-gray-700">Один клик = шанс на жизнь. Делайте репосты ориентировок из наших официальных каналов. Не распространяйте объявления с личными контактами родных (защита от мошенников).</p>
-</div>
-<a href="https://t.me/pso_tyneodin" target="_blank" class="block w-full text-center bg-blue-500 text-white font-bold py-3 rounded-xl shadow-md active:bg-blue-600">
-Подписаться на канал (Ориентировки)
-</a>
-</div>
-</div>
-<!-- Вкладка 4: Профилактика -->
-<div id="tab-info" class="tab-content">
-<h2 class="text-xl font-bold mb-4">Профилактика и Контакты</h2>
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100 mb-6">
-<h3 class="font-bold text-lg mb-3 border-b pb-2">Как предотвратить пропажу</h3>
-<ul class="text-sm space-y-3">
-<li class="flex items-start">
-<span class="text-green-500 mr-2">✔️</span>
-<span><strong>Детям:</strong> Установите приложения геолокации (Где мои дети, Family Link и др.). Договоритесь о звонках по маршруту. Фотографируйте перед выходом в людные места.</span>
-</li>
-<li class="flex items-start">
-<span class="text-green-500 mr-2">✔️</span>
-<span><strong>Пожилым (деменция):</strong> Используйте GPS-трекеры, вшивайте бирочки с контактами в одежду, используйте силиконовые мед. браслеты с ФИО.</span>
-</li>
-</ul>
-</div>
-<div class="bg-tg-secondary p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-<h3 class="font-bold text-lg mb-2">Наши контакты</h3>
-<p class="text-sm text-gray-600 mb-4">Горячая линия ВРОО ПСО «Ты не один» работает круглосуточно.</p>
-<a href="tel:+79115056898" class="block w-full bg-red-100 text-red-700 font-bold py-3 rounded-xl mb-3 border border-red-200">
-☎️ +7 (911) 505-68-98
-</a>
-<a href="https://t.me/pso_tyneodin" target="_blank" class="block w-full bg-blue-50 text-blue-600 font-bold py-3 rounded-xl border border-blue-200">
-<svg class="w-5 h-5 inline-block mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
-Telegram-канал
-</a>
-</div>
-<p class="text-xs text-center text-gray-400 mt-6">
-Мы рядом. Мы поможем. Ты не один.<br>
-По материалам ВРОО ПСО "Ты не один"
-</p>
-</div>
-</main>
-<nav class="fixed bottom-0 w-full bg-tg-secondary border-t border-gray-200 shadow-lg z-50">
-<div class="flex justify-around items-center max-w-md mx-auto">
-<button onclick="switchTab('sos')" id="nav-sos" class="nav-btn flex-1 py-3 flex flex-col items-center text-red-600">
-<svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-<span class="text-[10px] font-bold">SOS</span>
-</button>
-<button onclick="switchTab('instructions')" id="nav-instructions" class="nav-btn flex-1 py-3 flex flex-col items-center text-gray-400 hover:text-blue-600 transition-colors">
-<svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-<span class="text-[10px] font-medium">Алгоритмы</span>
-</button>
-<button onclick="switchTab('volunteer')" id="nav-volunteer" class="nav-btn flex-1 py-3 flex flex-col items-center text-gray-400 hover:text-blue-600 transition-colors">
-<svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-<span class="text-[10px] font-medium">Волонтерам</span>
-</button>
-<button onclick="switchTab('info')" id="nav-info" class="nav-btn flex-1 py-3 flex flex-col items-center text-gray-400 hover:text-blue-600 transition-colors">
-<svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-<span class="text-[10px] font-medium">Инфо</span>
-</button>
-</div>
-</nav>
-<script>
-// Инициализация Telegram Web App
-const tg = window.Telegram.WebApp;
-tg.expand();
-tg.ready();
-// Установка цвета хедера в зависимости от темы ТГ (опционально, оставляем красный для важности)
-tg.setHeaderColor('#dc2626');
-function switchTab(tabId) {
-// Скрыть все вкладки
-document.querySelectorAll('.tab-content').forEach(tab => {
-tab.classList.remove('active');
-});
-// Сбросить стили всех кнопок навигации
-document.querySelectorAll('.nav-btn').forEach(btn => {
-btn.classList.remove('text-blue-600', 'text-red-600');
-btn.classList.add('text-gray-400');
-});
-// Показать выбранную вкладку
-document.getElementById('tab-' + tabId).classList.add('active');
-// Выделить активную кнопку
-const activeBtn = document.getElementById('nav-' + tabId);
-activeBtn.classList.remove('text-gray-400');
-if(tabId === 'sos') {
-activeBtn.classList.add('text-red-600');
-} else {
-activeBtn.classList.add('text-blue-600');
-}
-// Легкая вибрация при переключении
-if(tg.HapticFeedback) {
-tg.HapticFeedback.selectionChanged();
-}
-}
-function toggleAccordion(id) {
-const content = document.getElementById(id);
-const icon = document.getElementById('icon-' + id);
-if (content.style.maxHeight) {
-content.style.maxHeight = null;
-icon.classList.remove('rotate-180');
-} else {
-// Закрываем другие (опционально, здесь сделаем независимые)
-content.style.maxHeight = content.scrollHeight + "px";
-icon.classList.add('rotate-180');
-}
-}
-</script>
+<body class="bg-slate-50 text-gray-800 antialiased selection:bg-squad selection:text-white">
+
+    <header class="sticky top-0 z-50 flex flex-col">
+        <!-- Блок соцсетей и базовой инфы -->
+        <div class="px-4 py-2 flex justify-between items-center text-sm bg-squad text-white">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-users-viewfinder text-blue-200"></i>
+                <span class="font-bold tracking-widest uppercase text-[10px] sm:text-xs text-blue-100">ВРОО ПСО "Ты не один"</span>
+            </div>
+            <div class="flex items-center gap-4 text-lg">
+                <a href="https://vk.com/pso_tyneodin" target="_blank" class="text-blue-200 hover:text-white transition-colors" title="ВКонтакте"><i class="fa-brands fa-vk"></i></a>
+                <a href="https://t.me/pso_tyneodin" target="_blank" class="text-blue-200 hover:text-white transition-colors" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://max.ru/channel_psotyneodin" target="_blank" class="text-red-400 hover:text-red-300 transition-colors animate-pulse" title="Канал оповещений Max">
+                    <i class="fa-solid fa-bell"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Основная шапка (Glassmorphism effect) -->
+        <div class="bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-200">
+            <div class="max-w-3xl mx-auto px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-slate-50 transition-colors" onclick="openTab('main', 'Главная')" title="Вернуться на главную">
+                <div class="flex items-center gap-3">
+                    <!-- Логотип отряда -->
+                    <div class="w-11 h-11 bg-slate-50 rounded-full flex items-center justify-center shrink-0 shadow-sm border border-gray-200 text-squad">
+                        <i class="fa-solid fa-hands-holding-circle text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl font-black tracking-widest uppercase leading-tight text-squad">ПСО "Ты не один"</h1>
+                        <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Вологодская область</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Хлебные крошки -->
+            <div class="max-w-3xl mx-auto px-4 py-2 text-[10px] bg-slate-100/50">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1">
+                        <li class="inline-flex items-center text-gray-500 font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-location-crosshairs mr-1.5 text-squad"></i> РАЗДЕЛ
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-chevron-right text-gray-400 mx-1.5 text-[8px]"></i>
+                                <span id="breadcrumb-current" class="text-squad font-black uppercase tracking-widest">Главная</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-4 sm:p-6 pb-[100px] space-y-6">
+        
+        <section id="main" class="tab-content active">
+            <!-- Приветственный блок -->
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 text-center mb-6 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-squad to-blue-400"></div>
+                <div class="w-20 h-20 mx-auto bg-blue-50 rounded-2xl flex items-center justify-center mb-4 shadow-sm border border-blue-100">
+                    <i class="fa-solid fa-magnifying-glass-location text-4xl text-squad"></i>
+                </div>
+                <h2 class="text-2xl font-black text-gray-900 uppercase tracking-wide mb-1">Поиск пропавших</h2>
+                <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-6">Вологодская региональная общественная организация</p>
+                
+                <div class="text-left text-sm text-gray-700 space-y-5 font-medium">
+                    <div>
+                        <h3 class="font-black text-squad uppercase flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-mobile-screen bg-blue-100 p-1.5 rounded-lg"></i> Как пользоваться:
+                        </h3>
+                        <p class="leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-100">Внизу экрана — меню. Раздел <strong>«Экстренно»</strong> — пошаговый алгоритм действий при пропаже. <strong>«Памятки»</strong> — правила безопасности для леса и города. Для возврата сюда нажмите на название отряда сверху.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-black text-squad uppercase flex items-center gap-2 mb-2">
+                            <i class="fa-solid fa-hand-holding-heart bg-blue-100 p-1.5 rounded-lg"></i> Как помочь отряду:
+                        </h3>
+                        <ul class="space-y-2.5">
+                            <li class="flex items-start bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <i class="fa-solid fa-circle-check text-squad mt-0.5 mr-3"></i> 
+                                <span><strong>Стать добровольцем:</strong> заполните анкету в группе ВКонтакте для участия в поисках.</span>
+                            </li>
+                            <li class="flex items-start bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <i class="fa-solid fa-circle-check text-squad mt-0.5 mr-3"></i> 
+                                <span><strong>Инфопоиск:</strong> делайте репосты. Один репост может спасти жизнь!</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3 mb-6">
+                <!-- Кнопка Ориентировки (НОВАЯ) -->
+                <a href="https://t.me/pso_tyneodin" target="_blank" class="w-full bg-squad text-white p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-squad_light transition-all shadow-md hover:shadow-lg flex items-center justify-between group">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-images text-xl"></i>
+                        </div>
+                        <span>Актуальные ориентировки</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-white/50"></i>
+                </a>
+
+                <button id="share-btn" onclick="shareApp()" class="w-full bg-white text-squad p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-slate-50 transition-all shadow-sm border border-gray-200 flex items-center justify-center group">
+                    <i class="fa-solid fa-share-nodes mr-3 text-xl group-hover:-rotate-12 transition-transform"></i> Поделиться приложением
+                </button>
+                
+                <a href="https://vk.ru/shishin_85" target="_blank" class="w-full bg-slate-100 text-gray-500 py-3 rounded-xl font-bold uppercase tracking-wider hover:bg-slate-200 transition-colors flex items-center justify-center text-xs">
+                    <i class="fa-solid fa-bug mr-2"></i> Сообщить об ошибке (Разработчик)
+                </a>
+            </div>
+            
+            <div class="bg-red-50/80 border border-red-200 text-red-900 p-4 rounded-2xl text-sm shadow-sm flex items-start gap-3">
+                <i class="fa-solid fa-triangle-exclamation text-red-600 text-xl mt-0.5"></i>
+                <div>
+                    <strong class="uppercase tracking-wide font-black text-red-700 block mb-1">Внимание!</strong> 
+                    Правила «трёх суток» не существует! Заявление обязаны принять в момент обращения независимо от места пропажи.
+                </div>
+            </div>
+        </section>
+
+        <section id="emergency" class="tab-content">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-kit-medical text-red-600 text-lg"></i>
+                </div>
+                <h2 class="text-xl font-black text-gray-900 uppercase">Что делать при пропаже?</h2>
+            </div>
+            
+            <div class="space-y-4 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-squad before:to-slate-100">
+                
+                <!-- Шаг 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">1</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
+                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Заявление в полицию</h3>
+                        <p class="text-sm font-medium text-gray-600">Обязательно обратитесь в ближайшее отделение или по телефону <strong class="text-red-600">112</strong>. Заявление обязаны принять немедленно.</p>
+                    </div>
+                </div>
+
+                <!-- Шаг 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">2</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
+                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Заявка в ПСО</h3>
+                        <p class="text-sm font-medium text-gray-600">Горячая линия ПСО «Ты не один»: <a href="tel:+79115056898" class="text-squad font-black hover:underline block mt-1">+7 911 505-68-98</a> Дорога каждая минута!</p>
+                    </div>
+                </div>
+
+                <!-- Шаг 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">3</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
+                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Сбор информации</h3>
+                        <p class="text-sm font-medium text-gray-600">Подготовьте приметы, описание одежды, свежее фото. Отвечайте честно, не утаивайте информацию.</p>
+                    </div>
+                </div>
+
+                <!-- Шаг 4 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white bg-squad text-white font-black shadow shrink-0 z-10">4</div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-2xl bg-white shadow-sm border border-gray-100 ml-4 md:ml-0">
+                        <h3 class="font-black text-gray-900 uppercase tracking-wide mb-1">Действия дома</h3>
+                        <ul class="list-none text-sm space-y-1 font-medium text-gray-600">
+                            <li><i class="fa-solid fa-check text-green-500 mr-1"></i> Кто-то должен быть дома.</li>
+                            <li><i class="fa-solid fa-xmark text-red-500 mr-1"></i> Не публикуйте личные номера в сети.</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-1"></i> В ТЦ требуйте «громкий поиск».</li>
+                            <li><i class="fa-solid fa-check text-green-500 mr-1"></i> Обращайтесь к «Островкам безопасности» в магазинах.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="tab-content">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-shield-halved text-green-600 text-lg"></i>
+                </div>
+                <h2 class="text-xl font-black text-gray-900 uppercase">Памятки безопасности</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- Лес -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button onclick="toggleAccordion('acc-forest')" class="w-full p-5 text-left font-black hover:bg-slate-50 flex justify-between items-center text-gray-900 uppercase text-sm tracking-wide transition-colors">
+                        <div class="flex items-center"><i class="fa-solid fa-tree text-green-600 mr-3 text-lg"></i> Правила для леса</div>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-chevron-down text-gray-600"></i></div>
+                    </button>
+                    <div id="acc-forest" class="accordion-content bg-slate-50 px-5 border-t border-gray-100">
+                        <div class="py-5 text-sm space-y-4 font-medium text-gray-700">
+                            <p>Заранее спланируйте маршрут. Сообщите близким куда вы идёте и время возвращения.</p>
+                            
+                            <div>
+                                <h4 class="font-black text-gray-900 uppercase tracking-wide mb-2">Что взять с собой:</h4>
+                                <ul class="grid grid-cols-2 gap-2">
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-mobile-screen text-squad w-5 text-center mr-1"></i> Телефон</li>
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-battery-full text-squad w-5 text-center mr-1"></i> Powerbank</li>
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-compass text-squad w-5 text-center mr-1"></i> Компас</li>
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-vest text-squad w-5 text-center mr-1"></i> Яркая одежда</li>
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-bottle-water text-squad w-5 text-center mr-1"></i> Вода и еда</li>
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-fire text-squad w-5 text-center mr-1"></i> Спички</li>
+                                    <li class="bg-white p-2 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-bullhorn text-squad w-5 text-center mr-1"></i> Свисток</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-xl border border-red-100">
+                                <h4 class="font-black text-red-700 uppercase mb-2"><i class="fa-solid fa-circle-exclamation mr-1"></i> Если заблудились:</h4>
+                                <ul class="list-disc pl-5 font-bold space-y-1 text-red-900">
+                                    <li>ОСТАВАЙТЕСЬ НА МЕСТЕ. Ищите открытое пространство.</li>
+                                    <li>Позвоните 112. Ждите помощи.</li>
+                                    <li>Отвечайте шумом на шум (свисток эффективнее голоса).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Город -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button onclick="toggleAccordion('acc-city')" class="w-full p-5 text-left font-black hover:bg-slate-50 flex justify-between items-center text-gray-900 uppercase text-sm tracking-wide transition-colors">
+                        <div class="flex items-center"><i class="fa-solid fa-child-reaching text-orange-500 mr-3 text-lg"></i> Дети в городе (ТЦ, улица)</div>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-chevron-down text-gray-600"></i></div>
+                    </button>
+                    <div id="acc-city" class="accordion-content bg-slate-50 px-5 border-t border-gray-100">
+                        <div class="py-5 text-sm space-y-4 font-medium text-gray-700">
+                            <div>
+                                <h4 class="font-black text-orange-600 uppercase tracking-wide mb-2">Правило трех "О":</h4>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border border-orange-200">
+                                    <ul class="list-none space-y-3 font-black text-gray-900">
+                                        <li class="flex items-center"><i class="fa-solid fa-circle-stop text-orange-500 text-xl w-6 mr-2"></i> ОСТАНОВИСЬ — стой там, где потерялся.</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-eye text-orange-500 text-xl w-6 mr-2"></i> ОГЛЯНИСЬ — посмотри вокруг.</li>
+                                        <li class="flex items-center"><i class="fa-solid fa-bullhorn text-orange-500 text-xl w-6 mr-2"></i> ОКРИКНИ — позови родителей.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 bg-white p-4 rounded-xl shadow-sm border border-gray-200 mt-4">
+                                <li>Просить помощь только у того, кто работает в этом месте, полиции или взрослых с детьми.</li>
+                                <li>Ни с кем не уходить на улицу!</li>
+                                <li>Искать знак «Островок безопасности» (оранжевая капля) в супермаркетах и банках.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Деменция -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button onclick="toggleAccordion('acc-elderly')" class="w-full p-5 text-left font-black hover:bg-slate-50 flex justify-between items-center text-gray-900 uppercase text-sm tracking-wide transition-colors">
+                        <div class="flex items-center"><i class="fa-solid fa-person-cane text-purple-500 mr-3 text-lg"></i> Пожилые люди (Деменция)</div>
+                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center"><i class="fa-solid fa-chevron-down text-gray-600"></i></div>
+                    </button>
+                    <div id="acc-elderly" class="accordion-content bg-slate-50 px-5 border-t border-gray-100">
+                        <div class="py-5 text-sm space-y-3 font-medium text-gray-700">
+                            <p class="font-bold">Превентивные меры при проблемах с памятью:</p>
+                            <ul class="space-y-2">
+                                <li class="bg-white p-3 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-ring text-purple-500 w-6 text-center mr-2"></i> Браслеты безопасности с гравировкой.</li>
+                                <li class="bg-white p-3 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-watch-apple text-purple-500 w-6 text-center mr-2"></i> GPS-часы или SOS-кнопка.</li>
+                                <li class="bg-white p-3 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-solid fa-tags text-purple-500 w-6 text-center mr-2"></i> Бирки с контактами на всей одежде.</li>
+                                <li class="bg-white p-3 rounded-lg border border-gray-200 flex items-center shadow-sm"><i class="fa-regular fa-images text-purple-500 w-6 text-center mr-2"></i> Фото-инструкции дома у выхода.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacts" class="tab-content">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-address-book text-blue-600 text-lg"></i>
+                </div>
+                <h2 class="text-xl font-black text-gray-900 uppercase">Связь с отрядом</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- Горячая линия -->
+                <div class="bg-white p-8 rounded-3xl border border-red-100 shadow-[0_10px_30px_rgba(220,38,38,0.1)] flex flex-col items-center text-center relative overflow-hidden">
+                    <div class="absolute top-0 w-full h-2 bg-red-500"></div>
+                    <div class="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-phone-volume text-3xl text-red-500 animate-bounce"></i>
+                    </div>
+                    <h3 class="font-black text-gray-500 uppercase tracking-widest text-xs mb-2">Горячая линия (24/7)</h3>
+                    <a href="tel:+79115056898" class="text-3xl font-black text-gray-900 hover:text-red-600 transition-colors tracking-tight">+7 911 505-68-98</a>
+                    <p class="text-xs text-gray-500 mt-3 font-bold uppercase px-4 bg-slate-50 py-2 rounded-lg border border-slate-100">Любой может позвонить и запросить помощь!</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a href="https://t.me/pso_tyneodin" target="_blank" class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all group">
+                        <div class="w-12 h-12 bg-[#229ED9]/10 text-[#229ED9] rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-telegram"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-black text-gray-900 uppercase text-sm tracking-wide mb-0.5">Telegram</div>
+                            <div class="text-xs text-gray-500 font-medium">Актуальные ориентировки</div>
+                        </div>
+                    </a>
+                    <a href="https://max.ru/channel_psotyneodin" target="_blank" class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all group">
+                        <div class="w-12 h-12 bg-red-500/10 text-red-500 rounded-xl flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-black text-gray-900 uppercase text-sm tracking-wide mb-0.5">Оповещения Max</div>
+                            <div class="text-xs text-gray-500 font-medium">Срочные новости поисков</div>
+                        </div>
+                    </a>
+                </div>
+
+                <a href="https://vk.com/pso_tyneodin" target="_blank" class="block w-full bg-[#0077FF] text-white text-center p-4 rounded-2xl font-black uppercase tracking-widest hover:bg-[#0066DD] transition-all shadow-md hover:shadow-lg flex items-center justify-center">
+                    <i class="fa-brands fa-vk mr-3 text-xl"></i> Написать во ВКонтакте
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Плавающая кнопка SOS -->
+    <a href="tel:+79115056898" class="fixed bottom-[95px] right-4 sm:right-6 w-16 h-16 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 animate-pulse z-50 border-2 border-white ring-4 ring-red-500/20">
+        <i class="fa-solid fa-phone-volume text-xl mb-0.5"></i>
+        <span class="text-[10px] font-black uppercase tracking-widest leading-none">SOS</span>
+    </a>
+
+    <!-- Современное нижнее меню -->
+    <nav class="bg-white/90 backdrop-blur-lg border-t border-gray-200 fixed bottom-0 w-full z-40 pb-safe shadow-[0_-10px_40px_rgba(0,0,0,0.05)] rounded-t-3xl">
+        <div class="max-w-md mx-auto w-full grid grid-cols-3 h-[70px] px-2">
+            
+            <!-- 1. Экстренно -->
+            <button onclick="openTab('emergency', 'Экстренно')" id="nav-emergency" class="nav-btn flex flex-col items-center justify-center text-gray-400 hover:text-squad transition-colors group">
+                <div class="nav-icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 group-hover:bg-slate-100 transition-colors">
+                    <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                </div>
+                <span class="text-[9px] font-bold uppercase tracking-wider">Экстренно</span>
+            </button>
+
+            <!-- 2. Памятки -->
+            <button onclick="openTab('rules', 'Памятки')" id="nav-rules" class="nav-btn flex flex-col items-center justify-center text-gray-400 hover:text-squad transition-colors group">
+                <div class="nav-icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 group-hover:bg-slate-100 transition-colors">
+                    <i class="fa-solid fa-shield-halved text-xl"></i>
+                </div>
+                <span class="text-[9px] font-bold uppercase tracking-wider">Памятки</span>
+            </button>
+            
+            <!-- 3. Контакты -->
+            <button onclick="openTab('contacts', 'Контакты')" id="nav-contacts" class="nav-btn flex flex-col items-center justify-center text-gray-400 hover:text-squad transition-colors group">
+                <div class="nav-icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 group-hover:bg-slate-100 transition-colors">
+                    <i class="fa-solid fa-address-book text-xl"></i>
+                </div>
+                <span class="text-[9px] font-bold uppercase tracking-wider">Контакты</span>
+            </button>
+            
+        </div>
+    </nav>
+
+    <script>
+        function openTab(tabId, tabName) {
+            // Скрываем все вкладки
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Сбрасываем стили всех кнопок в меню
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Показываем нужную вкладку
+            document.getElementById(tabId).classList.add('active');
+            
+            // Активируем нужную кнопку (если это не главная страница, так как её нет в нижнем меню)
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+
+            // Обновляем хлебные крошки
+            document.getElementById('breadcrumb-current').textContent = tabName;
+            
+            // Прокрутка наверх плавно
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleAccordion(accId) {
+            const content = document.getElementById(accId);
+            const icon = content.previousElementSibling.querySelector('.fa-chevron-down');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+                icon.style.transition = 'transform 0.3s ease';
+            }
+        }
+
+        function shareApp() {
+            const btn = document.getElementById('share-btn');
+            const originalText = btn.innerHTML;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'ПСО "Ты не один"',
+                    text: 'Мини-приложение поисково-спасательного отряда "Ты не один". Экстренный алгоритм действий, актуальные ориентировки и памятки по безопасности.',
+                    url: window.location.href
+                }).catch((error) => console.log('Ошибка шаринга:', error));
+            } else {
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                
+                btn.innerHTML = '<i class="fa-solid fa-check mr-2 text-xl"></i> Ссылка скопирована!';
+                btn.classList.replace('text-squad', 'text-green-600');
+                btn.classList.replace('border-gray-200', 'border-green-300');
+                
+                setTimeout(() => { 
+                    btn.innerHTML = originalText; 
+                    btn.classList.replace('text-green-600', 'text-squad');
+                    btn.classList.replace('border-green-300', 'border-gray-200');
+                }, 2000);
+            }
+        }
+    </script>
 </body>
 </html>
