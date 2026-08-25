@@ -22,14 +22,16 @@
     
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
-        // Надежная инициализация VK Bridge для работы внутри ВКонтакте
-        try {
-            if (typeof vkBridge !== 'undefined') {
-                vkBridge.send('VKWebAppInit');
+        // Инициализация VK Bridge после загрузки DOM для предотвращения белого экрана
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                if (typeof vkBridge !== 'undefined') {
+                    vkBridge.send('VKWebAppInit').catch(console.error);
+                }
+            } catch (e) {
+                console.error('VK Bridge init error', e);
             }
-        } catch (e) {
-            console.error('VK Bridge init error', e);
-        }
+        });
     </script>
 
     <style>
@@ -163,55 +165,58 @@
                 <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center shrink-0">
                     <i class="fa-solid fa-kit-medical text-red-600 text-lg"></i>
                 </div>
-                <h2 class="text-xl font-black text-gray-900 uppercase leading-tight">Пропал человек? Что делать</h2>
+                <h2 class="text-xl font-black text-gray-900 uppercase leading-tight">Пропал ребенок? Алгоритм</h2>
             </div>
 
             <div class="bg-red-50 border border-red-200 text-red-900 p-4 rounded-xl text-sm shadow-sm mb-6 font-medium">
                 <strong class="uppercase tracking-wide font-black text-red-700 block mb-1">Помните про «Золотой час»!</strong> 
-                Правила «трёх суток» не существует! Заявление обязаны принять в момент обращения независимо от места пропажи и степени родства. Если отказывают — звоните 02 в присутствии сотрудников.
+                Не ждите 3 дня! Первые часы самые важные. Начинайте активный поиск и звоните 112 немедленно. Закон не устанавливает сроков ожидания для подачи заявления.
             </div>
             
             <div class="space-y-3">
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                    <h3 class="font-black text-gray-900 uppercase mb-2 text-red-600"><i class="fa-solid fa-people-group mr-2"></i> Если потерялся в толпе (ТЦ, вокзал)</h3>
+                    <ul class="text-sm font-medium text-gray-700 space-y-2">
+                        <li><strong>Шаг 1. Немедленный осмотр:</strong> Проверьте радиус 50-100 метров (витрины, аттракционы).</li>
+                        <li><strong>Шаг 2. Техника «Громкого поиска»:</strong> Не ищите молча! Громко кричите: <em>«Я ищу мальчика 5 лет, рост 110 см, синяя куртка, красная шапка!»</em>. Окружающие подключатся к поиску.</li>
+                        <li><strong>Шаг 3. Подключение служб:</strong> Обратитесь к охране, попросите перекрыть выходы и дать объявление по громкой связи. Звоните 112.</li>
+                        <li class="bg-slate-50 p-2 rounded border border-gray-100 mt-2"><strong>Типичные ошибки:</strong> Молчаливый поиск; оставлять второго ребенка одного во время поисков; давать нечеткое описание («он в синем»).</li>
+                    </ul>
+                </div>
+
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
                     <div class="w-8 h-8 rounded-full bg-squad text-white font-black flex items-center justify-center shrink-0">1</div>
                     <div>
                         <h3 class="font-black text-gray-900 uppercase mb-1">Заявление в полицию</h3>
-                        <p class="text-sm font-medium text-gray-600">Звоните 112 или 02, либо идите в дежурную часть. Требуйте регистрацию заявления. Возьмите у сотового оператора распечатку последних звонков (для ребенка).</p>
+                        <p class="text-sm font-medium text-gray-600">Звоните 112 или 02. Требуйте регистрацию заявления. Запросите у сотового оператора распечатку звонков. Если отказывают — звоните 02 в присутствии сотрудников.</p>
                     </div>
                 </div>
 
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
                     <div class="w-8 h-8 rounded-full bg-squad text-white font-black flex items-center justify-center shrink-0">2</div>
                     <div>
-                        <h3 class="font-black text-gray-900 uppercase mb-1">Заявка в ПСО</h3>
-                        <p class="text-sm font-medium text-gray-600">Оставьте заявку волонтерам. ПСО «Ты не один»: <a href="tel:+79115056898" class="text-squad font-bold block mt-1">+7 911 505-68-98</a></p>
+                        <h3 class="font-black text-gray-900 uppercase mb-1">Связь с ПСО и обзвон</h3>
+                        <p class="text-sm font-medium text-gray-600">Передайте заявку на горячую линию отряда. Каждые 6-12 часов обзванивайте больницы и справочные скорой помощи.</p>
                     </div>
                 </div>
 
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
                     <div class="w-8 h-8 rounded-full bg-squad text-white font-black flex items-center justify-center shrink-0">3</div>
                     <div>
-                        <h3 class="font-black text-gray-900 uppercase mb-1">Сбор информации</h3>
-                        <p class="text-sm font-medium text-gray-600">Подготовьте самую свежую фотографию. Вспомните, во что был одет пропавший, его приметы, конфликты, плохие привычки. <strong>Не обманывайте полицию и волонтеров</strong>, они должны знать всё.</p>
+                        <h3 class="font-black text-gray-900 uppercase mb-1">Алгоритм для школ и детских садов</h3>
+                        <p class="text-sm font-medium text-gray-600">Если ребенок не дошел до школы: свяжитесь с классным руководителем, незамедлительно позвоните родителям (мог забыть предупредить о болезни). Проверьте «Зеленый коридор» (безопасный маршрут «Дом-Школа-Дом»).</p>
                     </div>
                 </div>
-
-                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
-                    <div class="w-8 h-8 rounded-full bg-squad text-white font-black flex items-center justify-center shrink-0">4</div>
-                    <div>
-                        <h3 class="font-black text-gray-900 uppercase mb-1">Оповещение и больницы</h3>
-                        <p class="text-sm font-medium text-gray-600">Обзванивайте больницы и справочные скорой каждые 6-12 часов. Оповестите друзей и родственников.</p>
-                    </div>
-                </div>
-
+                
                 <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex gap-4">
                     <div class="w-8 h-8 rounded-full bg-squad text-white font-black flex items-center justify-center shrink-0">!</div>
                     <div>
-                        <h3 class="font-black text-gray-900 uppercase mb-1">Критически важно</h3>
+                        <h3 class="font-black text-gray-900 uppercase mb-1">Важные правила</h3>
                         <ul class="list-disc pl-4 text-sm font-medium text-gray-600 space-y-1 mt-2">
-                            <li>Кто-то должен обязательно <strong>находиться дома</strong> на случай, если пропавший вернется.</li>
-                            <li><strong>Не обращайтесь к экстрасенсам</strong> и магам — это пустая трата времени, ведущая по ложному следу.</li>
-                            <li><strong>Не публикуйте свой личный номер</strong> в открытых ориентировках в сети — этим воспользуются мошенники.</li>
+                            <li>Обязательно <strong>оставьте кого-то дома</strong>, на случай возвращения ребенка.</li>
+                            <li><strong>Не обращайтесь к экстрасенсам</strong> — это потеря времени.</li>
+                            <li><strong>Не публикуйте свой номер</strong> в открытых ориентировках, во избежание мошенников.</li>
+                            <li>Если пропавший нашелся — сразу отмените поиск по линии 112 и у координатора ПСО!</li>
                         </ul>
                     </div>
                 </div>
@@ -230,40 +235,31 @@
                 <!-- Дети в городе -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                     <button onclick="toggleAccordion('acc-city')" class="w-full p-4 text-left font-black hover:bg-slate-50 flex justify-between items-center text-gray-900 uppercase text-sm tracking-wide transition-colors">
-                        <div class="flex items-center"><i class="fa-solid fa-child-reaching text-orange-500 mr-3 text-lg w-6 text-center"></i> Дети в городе и ТЦ</div>
+                        <div class="flex items-center"><i class="fa-solid fa-child-reaching text-orange-500 mr-3 text-lg w-6 text-center"></i> Дети в городе / Один дома</div>
                         <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0"><i class="fa-solid fa-chevron-down text-gray-600 transition-transform"></i></div>
                     </button>
                     <div id="acc-city" class="accordion-content bg-slate-50 px-4 border-t border-gray-100">
                         <div class="py-4 text-sm space-y-4 font-medium text-gray-800">
-                            <p><strong>Если ребенок потерялся, алгоритм для него:</strong></p>
                             <ul class="space-y-2">
                                 <li class="bg-white p-3 rounded-lg border border-gray-200">
                                     <strong class="text-orange-600">Правило трех «О»:</strong><br>
-                                    ОСТАНОВИСЬ — стой на месте, никуда не иди.<br>
+                                    ОСТАНОВИСЬ — стой на месте. Ищут всегда взрослые!<br>
                                     ОГЛЯНИСЬ — посмотри вокруг.<br>
                                     ОКРИКНИ — громко позови родителей.
                                 </li>
                                 <li class="bg-white p-3 rounded-lg border border-gray-200">
-                                    <strong class="text-red-600">К кому обращаться за помощью:</strong><br>
-                                    Полицейский, охранник или <strong>человек с ребенком</strong> (женщина или мужчина с детьми охотнее откликнутся).
+                                    <strong class="text-red-600">Правило трех «Н»:</strong><br>
+                                    НИКОГДА, НИКУДА, НИ С КЕМ не ходить без разрешения. Взрослый не должен просить о помощи чужого ребенка. Если тащат силой — кричи: «Я вас не знаю! Вы мне чужой!»
                                 </li>
                                 <li class="bg-white p-3 rounded-lg border border-gray-200">
-                                    <strong class="text-red-600">Правило трех «Н» (никогда никуда ни с кем):</strong><br>
-                                    Если взрослый предлагает увести к родителям, отвечать: <em>«Я дождусь родителей здесь»</em> или <em>«Вызовите полицию сюда»</em>.
+                                    <strong class="text-green-600 block mb-1">Островки безопасности:</strong>
+                                    Магазины «Пятёрочка», «ВкусВилл», «Перекрёсток» и отделения Сбербанка (отмечены оранжевой каплей). Горячая линия островков: <strong>8 800 700 29 45</strong>. Охранники, полицейские и женщины с детьми — это "безопасные взрослые".
+                                </li>
+                                <li class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <strong class="text-blue-600 block mb-1">Слово-пароль (Один дома):</strong>
+                                    Придумайте пароль. Не открывай дверь тем, кто его не знает. Если забыли пароль — хвалите ребенка за то, что не открыл дверь!
                                 </li>
                             </ul>
-                            <div class="bg-white p-3 rounded-lg border border-gray-200">
-                                <strong class="block mb-1">Важные правила для детей:</strong>
-                                <ul class="list-disc pl-4 space-y-1">
-                                    <li>Не заходить в подъезд или лифт с незнакомым человеком.</li>
-                                    <li>Кричать и привлекать внимание, если кто-то тащит силой (жизнь важнее приличий).</li>
-                                    <li>Завести семейное <strong>слово-пароль</strong>.</li>
-                                </ul>
-                            </div>
-                            <div class="bg-white p-3 rounded-lg border border-gray-200">
-                                <strong class="block mb-1">Алгоритм для родителей (Громкий поиск):</strong>
-                                Громко кричите имя и во что одет ребенок. Оповестите охрану, требуйте закрыть выходы.
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -276,24 +272,19 @@
                     </button>
                     <div id="acc-forest" class="accordion-content bg-slate-50 px-4 border-t border-gray-100">
                         <div class="py-4 text-sm space-y-3 font-medium text-gray-800">
-                            <p>Заранее спланируйте маршрут. Сообщите близким, куда вы идёте и когда вернетесь.</p>
-                            <p><strong>Что взять с собой:</strong></p>
+                            <p>Заранее спланируйте маршрут. Сообщите близким.</p>
+                            <p><strong>Экипировка (обязательно):</strong></p>
                             <ul class="grid grid-cols-2 gap-2">
-                                <li class="bg-white p-2 rounded-md border border-gray-200">📱 Телефон (заряженный)</li>
+                                <li class="bg-white p-2 rounded-md border border-gray-200">📱 Заряженный телефон</li>
                                 <li class="bg-white p-2 rounded-md border border-gray-200">🧭 Компас</li>
                                 <li class="bg-white p-2 rounded-md border border-gray-200">🦺 Яркая одежда</li>
                                 <li class="bg-white p-2 rounded-md border border-gray-200">💧 Запас воды и еды</li>
                                 <li class="bg-white p-2 rounded-md border border-gray-200">🔥 Спички</li>
-                                <li class="bg-white p-2 rounded-md border border-gray-200">哨 Свисток</li>
+                                <li class="bg-white p-2 rounded-md border border-gray-200">哨 Свисток (слышно дальше голоса)</li>
                             </ul>
                             <div class="bg-red-50 p-3 rounded-lg border border-red-200 mt-2">
                                 <strong class="text-red-700">Если заблудились:</strong>
-                                <ul class="list-disc pl-4 mt-1">
-                                    <li>ОСТАВАЙТЕСЬ НА МЕСТЕ на открытом пространстве.</li>
-                                    <li>Позвоните 112.</li>
-                                    <li>Разведите костёр.</li>
-                                    <li>Отвечайте шумом на шум (свисток дальше голоса).</li>
-                                </ul>
+                                ОСТАВАЙТЕСЬ НА МЕСТЕ, звоните 112, разведите костер, отвечайте шумом на шум.
                             </div>
                         </div>
                     </div>
@@ -310,19 +301,10 @@
                             <div>
                                 <strong class="block mb-2">Меры предосторожности:</strong>
                                 <ul class="space-y-2">
-                                    <li class="bg-white p-2 rounded-md border border-gray-200">Соседи должны знать о проблемах с памятью.</li>
-                                    <li class="bg-white p-2 rounded-md border border-gray-200">Чаще делайте свежие фотографии.</li>
-                                    <li class="bg-white p-2 rounded-md border border-gray-200">Внесите отпечатки пальцев в базу полиции.</li>
-                                    <li class="bg-white p-2 rounded-md border border-gray-200">Используйте GPS-трекеры, часы, термонаклейки с QR или записки в кармане с адресом.</li>
-                                </ul>
-                            </div>
-                            <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
-                                <strong class="text-purple-900 block mb-1">Если встретили дезориентированного человека:</strong>
-                                <ul class="list-disc pl-4 space-y-1 text-purple-900">
-                                    <li>Подойдите не ближе 1,5 метров (личное пространство).</li>
-                                    <li>Говорите медленно, спокойно, задавайте простые вопросы.</li>
-                                    <li><strong>Не сажайте в такси или автобус!</strong> Это усложнит поиск.</li>
-                                    <li>Позвоните 112, сфотографируйте и оставайтесь с человеком до приезда полиции.</li>
+                                    <li class="bg-white p-2 rounded-md border border-gray-200">Крупный мобильный телефон с кнопкой быстрого набора (SOS) и шнурком на шею.</li>
+                                    <li class="bg-white p-2 rounded-md border border-gray-200">Раскладывайте в карманы записки с ФИО, вшивайте бирочки с информацией в одежду.</li>
+                                    <li class="bg-white p-2 rounded-md border border-gray-200">Чаще делайте свежие, актуальные фотографии!</li>
+                                    <li class="bg-white p-2 rounded-md border border-gray-200">Купите GPS-трекер (кулон/браслет/часы с датчиком падения).</li>
                                 </ul>
                             </div>
                         </div>
@@ -337,15 +319,21 @@
                     </button>
                     <div id="acc-digital" class="accordion-content bg-slate-50 px-4 border-t border-gray-100">
                         <div class="py-4 text-sm space-y-3 font-medium text-gray-800">
-                            <p>Объясните ребенку, что следует остерегаться незнакомцев в интернете, которые:</p>
-                            <ul class="list-disc pl-4 space-y-1 bg-white p-3 rounded-lg border border-gray-200">
-                                <li>Задают много вопросов о семье и личной жизни.</li>
-                                <li>Просят держать вашу дружбу в тайне.</li>
-                                <li>Настаивают на личной встрече.</li>
-                                <li>Шантажируют, заставляют чувствовать вину или страх.</li>
-                                <li>Узнают, кто еще имеет доступ к телефону/аккаунту.</li>
+                            <p>Установите на телефон приложения для родительского контроля и локации. Объясните ребенку, что это страховка, а не слежка.</p>
+                            <ul class="space-y-2">
+                                <li class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <strong class="text-blue-600">Заступник:</strong> Кнопка SOS, быстрое привлечение волонтеров, аудиомониторинг ситуации.
+                                </li>
+                                <li class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <strong class="text-blue-600">Где мои дети / Pingo:</strong> Точная геолокация, история маршрутов, функция громкого сигнала (даже в беззвучном режиме).
+                                </li>
+                                <li class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <strong class="text-blue-600">Google Family Link / Kids360:</strong> Контроль экранного времени, лимиты, блокировка, отслеживание.
+                                </li>
+                                <li class="bg-white p-3 rounded-lg border border-gray-200">
+                                    <strong class="text-blue-600">Kaspersky Safe Kids:</strong> Фильтрация контента, контроль местоположения.
+                                </li>
                             </ul>
-                            <p class="mt-2 text-xs text-gray-500">Установите на мобильный ребенка приложение с GPS-трекером и кнопкой SOS (сигнал тревоги).</p>
                         </div>
                     </div>
                 </div>
@@ -364,7 +352,7 @@
                 <!-- Горячие линии -->
                 <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm text-center">
                     <h3 class="font-black text-gray-500 uppercase tracking-widest text-xs mb-3">Горячая линия ПСО "Ты не один"</h3>
-                    <a href="tel:+79115056898" target="_blank" class="text-3xl font-black text-gray-900 hover:text-red-600 transition-colors block">+7 911 505-68-98</a>
+                    <a href="tel:+79115056898" class="text-3xl font-black text-gray-900 hover:text-red-600 transition-colors block">+7 911 505-68-98</a>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -407,7 +395,7 @@
     </main>
 
     <!-- Плавающая кнопка SOS -->
-    <a href="tel:+79115056898" target="_blank" class="fixed bottom-[95px] right-4 sm:right-6 w-16 h-16 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 animate-pulse z-50 border-2 border-white ring-4 ring-red-500/20">
+    <a href="tel:+79115056898" class="fixed bottom-[95px] right-4 sm:right-6 w-16 h-16 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 animate-pulse z-50 border-2 border-white ring-4 ring-red-500/20">
         <i class="fa-solid fa-phone-volume text-xl mb-0.5"></i>
         <span class="text-[10px] font-black uppercase tracking-widest leading-none">SOS</span>
     </a>
@@ -516,14 +504,20 @@
         }
 
         // Фикс для ссылок внутри ВКонтакте (VK Mini Apps)
-        // ВКонтакте блокирует обычные внешние ссылки в iframe, направляем их через мост
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', (e) => {
                     const href = link.getAttribute('href');
-                    if (href && href.startsWith('http')) {
+                    if (!href) return;
+
+                    // Звонки (tel) игнорируются скриптом, чтобы телефон звонил напрямую
+                    if (href.startsWith('tel:')) {
+                        return;
+                    }
+
+                    if (href.startsWith('http')) {
                         e.preventDefault();
-                        if (typeof vkBridge !== 'undefined' && vkBridge.send) {
+                        if (typeof vkBridge !== 'undefined' && vkBridge.supports('VKWebAppOpenUrl')) {
                             vkBridge.send('VKWebAppOpenUrl', { url: href }).catch(() => {
                                 window.open(href, '_blank') || (window.location.href = href);
                             });
