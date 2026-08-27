@@ -34,7 +34,7 @@
         }
         
         .pb-main { padding-bottom: calc(env(safe-area-inset-bottom) + 120px); }
-        .pt-safe { padding-top: calc(env(safe-area-inset-top) + 80px); }
+        .pt-safe { padding-top: calc(env(safe-area-inset-top) + 38px); }
         
         .bottom-nav-safe {
             padding-bottom: env(safe-area-inset-bottom);
@@ -86,7 +86,7 @@
         }
         
         html { scroll-behavior: smooth; }
-        section { scroll-margin-top: 90px; }
+        section { scroll-margin-top: 60px; }
 
         .highlight-phone { animation: highlight-pulse 2s infinite; }
         @keyframes highlight-pulse {
@@ -98,71 +98,65 @@
 </head>
 <body class="antialiased selection:bg-squad selection:text-white">
 
-    <header class="fixed top-0 w-full z-50 glass-header">
-        <div class="px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-3 text-left focus:outline-none">
-                <h1 class="text-sm font-black tracking-wider uppercase text-squad leading-tight whitespace-nowrap">ПСО "Ты не один"</h1>
-            </div>
+    <header class="fixed top-0 w-full z-50 glass-header h-8">
+        <div class="px-3 h-full flex justify-between items-center max-w-2xl mx-auto">
+            <h1 class="text-[12px] font-black tracking-wider uppercase text-squad truncate pr-2">ПСО "Ты не один"</h1>
             
-            <div class="flex items-center gap-2 text-xl">
-                 <a href="https://dzen.ru/psotyneodin" target="_blank" class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="Дзен">
-                    <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M23.1119 5.37894C23.6337 4.88764 24.3663 4.88764 24.8881 5.37894L42.6108 22.0624C43.1298 22.551 43.1298 23.449 42.6108 23.9376L24.8881 40.6211C24.3663 41.1124 23.6337 41.1124 23.1119 40.6211L5.38924 23.9376C4.87023 23.449 4.87023 22.551 5.38924 22.0624L23.1119 5.37894Z" />
-                    </svg>
+            <div class="flex items-center gap-1.5 flex-shrink-0">
+                 <!-- Дзен -->
+                 <a href="https://dzen.ru/psotyneodin" target="_blank" class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="Дзен">
+                    <i class="fa-solid fa-asterisk text-[10px]"></i>
                 </a>
-                <a href="https://vk.com/pso_tyneodin" target="_blank" class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="ВКонтакте">
-                    <i class="fa-brands fa-vk"></i>
+                <!-- ВКонтакте -->
+                <a href="https://vk.com/pso_tyneodin" target="_blank" class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="ВКонтакте">
+                    <i class="fa-brands fa-vk text-xs"></i>
                 </a>
-                <a href="https://max.ru/channel_psotyneodin" target="_blank" class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="Max">
-                    <span class="text-[10px] font-black">MAX</span>
+                <!-- Max -->
+                <a href="https://max.ru/channel_psotyneodin" target="_blank" class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="Max">
+                    <span class="text-[7px] font-black">MAX</span>
                 </a>
             </div>
-        </div>
-        
-        <div class="bg-slate-100 px-4 py-1.5 border-t border-slate-200/60 flex items-center gap-2">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Раздел:</span>
-            <span id="breadcrumb-text" class="text-[10px] font-bold text-squad uppercase tracking-widest">Главная</span>
         </div>
     </header>
 
     <main class="max-w-2xl mx-auto px-4 pt-safe pb-main" id="app-container">
         
-        <section id="main" class="mb-8">
+        <section id="main" class="mb-8 mt-2">
             <div class="content-card text-center bg-gradient-to-br from-red-50 to-white border-2 border-red-200 mb-6 shadow-md highlight-phone">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3 text-red-600 shadow-inner">
-                    <i class="fa-solid fa-phone-volume text-2xl"></i>
+                <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3 text-red-600 shadow-inner">
+                    <i class="fa-solid fa-phone-volume text-xl"></i>
                 </div>
-                <h2 class="text-xl font-black text-red-600 uppercase mb-1">Горячая линия отряда</h2>
-                <p class="text-xs text-slate-600 mb-3 font-semibold">Работает круглосуточно. Звонок бесплатный.</p>
-                <a href="tel:+79115056898" class="block text-2xl font-black text-red-600 hover:text-red-700 transition-colors bg-white py-3 rounded-xl shadow-sm border border-red-100">
+                <h2 class="text-lg font-black text-red-600 uppercase mb-1">Горячая линия отряда</h2>
+                <p class="text-[11px] text-slate-600 mb-2 font-semibold">Работает круглосуточно. Звонок бесплатный.</p>
+                <a href="tel:+79115056898" class="block text-xl font-black text-red-600 hover:text-red-700 transition-colors bg-white py-2.5 rounded-xl shadow-sm border border-red-100">
                     +7 911 505-68-98
                 </a>
-                <p class="text-[10px] text-slate-500 mt-3">Для вызова экстренных служб всегда звоните <a href="tel:112" class="font-bold underline text-slate-700">112</a></p>
+                <p class="text-[10px] text-slate-500 mt-2">Для вызова экстренных служб звоните <a href="tel:112" class="font-bold underline text-slate-700">112</a> или <a href="tel:102" class="font-bold underline text-slate-700">102</a></p>
             </div>
 
             <div class="content-card text-center relative overflow-hidden border-2 border-squad/10">
                 <div class="absolute -right-10 -top-10 text-9xl text-slate-50 opacity-50 pointer-events-none"><i class="fa-solid fa-shield-heart"></i></div>
-                <h2 class="text-2xl mb-2 relative z-10">Мы ищем пропавших людей</h2>
-                <p class="text-slate-500 relative z-10">Вологодская региональная общественная организация. Объединяем добровольцев для спасения жизней.</p>
+                <h2 class="text-xl mb-2 relative z-10">Мы ищем пропавших людей</h2>
+                <p class="text-xs text-slate-500 relative z-10 mb-5">Объединяем добровольцев для спасения жизней.</p>
                 
-                <div class="mt-6 flex flex-col gap-3 relative z-10">
-                    <a href="https://vk.com/album-32585861_147787229" target="_blank" class="w-full block bg-squad text-white font-bold rounded-xl py-3.5 shadow-lg hover:bg-squad_light transition-colors text-center text-xs">
+                <div class="mt-4 flex flex-col gap-2.5 relative z-10">
+                    <a href="https://vk.com/album-32585861_147787229" target="_blank" class="w-full block bg-squad text-white font-bold rounded-xl py-3 shadow-md hover:bg-squad_light transition-colors text-center text-xs">
                         <i class="fa-solid fa-images mr-2"></i> Актуальные ориентировки
                     </a>
                     
-                    <a href="https://vk.com/@pso_tyneodin-zayavka-na-poisk-propavshego" target="_blank" class="w-full block bg-red-600 text-white font-bold rounded-xl py-3.5 shadow-md hover:bg-red-700 transition-colors text-center text-sm">
+                    <a href="https://vk.com/@pso_tyneodin-zayavka-na-poisk-propavshego" target="_blank" class="w-full block bg-red-600 text-white font-bold rounded-xl py-3 shadow-md hover:bg-red-700 transition-colors text-center text-xs">
                         <i class="fa-solid fa-file-signature mr-2"></i> Заявка на поиск
                     </a>
 
-                    <a href="https://vk.com/@pso_tyneodin-kak-stat-volonterom-otryada" target="_blank" class="w-full block bg-slate-100 text-squad border border-slate-200 font-bold rounded-xl py-3.5 shadow-sm hover:bg-slate-200 transition-colors text-center text-sm">
+                    <a href="https://vk.com/@pso_tyneodin-kak-stat-volonterom-otryada" target="_blank" class="w-full block bg-slate-100 text-squad border border-slate-200 font-bold rounded-xl py-3 shadow-sm hover:bg-slate-200 transition-colors text-center text-xs">
                         <i class="fa-solid fa-hands-holding-child mr-2"></i> Стать волонтером
                     </a>
                     
-                    <a href="https://vk.ru/im/channels/-233922362" target="_blank" class="w-full block bg-slate-100 text-squad border border-slate-200 font-bold rounded-xl py-3.5 shadow-sm hover:bg-slate-200 transition-colors text-center text-sm">
+                    <a href="https://vk.ru/im/channels/-233922362" target="_blank" class="w-full block bg-slate-100 text-squad border border-slate-200 font-bold rounded-xl py-3 shadow-sm hover:bg-slate-200 transition-colors text-center text-xs">
                         <i class="fa-solid fa-bell mr-2"></i> Оповещение
                     </a>
                     
-                    <a href="https://vk.ru/@-32585861" target="_blank" class="w-full block bg-slate-100 text-squad border border-slate-200 font-bold rounded-xl py-3.5 shadow-sm hover:bg-slate-200 transition-colors text-center text-sm">
+                    <a href="https://vk.ru/@-32585861" target="_blank" class="w-full block bg-slate-100 text-squad border border-slate-200 font-bold rounded-xl py-3 shadow-sm hover:bg-slate-200 transition-colors text-center text-xs">
                         <i class="fa-solid fa-newspaper mr-2"></i> Статьи и блог отряда
                     </a>
                 </div>
@@ -189,12 +183,15 @@
             </div>
 
             <div class="content-card border-l-4 border-l-red-500">
-                <h2>ПРОПАЛ ЧЕЛОВЕК? ЧТО ДЕЛАТЬ?</h2>
-                <p><strong>1. Заявление в полицию немедленно!</strong> Правила «трёх суток» не существует! Заявление обязаны принять в момент обращения независимо от места пропажи. Если отказывают - звоните 112 при них.</p>
-                <p><strong>2. Звонок в отряд.</strong> Позвоните на горячую линию ПСО "Ты не один" (8-911-505-68-98). Это дает официальный старт поискам со стороны волонтеров.</p>
-                <p><strong>3. Один человек остается дома.</strong> Кто-то из родственников должен обязательно находиться дома на случай, если пропавший вернется.</p>
-                <p><strong>4. Сбор информации.</strong> Подготовьте самую свежую фотографию. Запросите у сотового оператора распечатку звонков. Каждые 12 часов проверяйте подъезд и двор.</p>
-                <p><strong>5. Не скрывайте факты.</strong> Честно отвечайте на вопросы полиции и координаторов. Любая мелочь, даже конфликт или вредные привычки, может спасти жизнь.</p>
+                <h2>Памятка «Пропал человек? Что делать?»</h2>
+                <p><strong>1. Заявление в полицию немедленно!</strong> Звоните по номеру <a href="tel:112" class="font-bold text-red-600">112</a> или <a href="tel:102" class="font-bold text-red-600">102</a>. Правила «трёх суток» не существует! Заявление обязаны принять в момент обращения независимо от места пропажи и степени родства.</p>
+                <p class="text-xs text-slate-600 mb-3 bg-red-50 p-2 rounded border border-red-100">Если отказывают в приеме заявления, звоните при сотрудниках: <a href="tel:02" class="font-bold text-red-600">02</a> (со стационарного).</p>
+                <p><strong>2. Звонок на горячую линию.</strong> Позвоните в ПСО "Ты не один" (<a href="tel:+79115056898" class="font-bold text-squad underline">+7 911 505-68-98</a>).</p>
+                <p><strong>3. Сбор информации.</strong> Вспомните, во что был одет пропавший, что имел при себе (зонт, очки, сумка). Вспомните особые приметы: шрамы, тату, походка. Найдите самую свежую фотографию (максимум полгода давности).</p>
+                <p><strong>4. Полезные действия.</strong> Обзвоните друзей, больницы, справочную скорой помощи, бюро несчастных случаев.</p>
+                <p><strong>5. Быть дома.</strong> Дома обязательно должен находиться кто-то из родственников на случай, если пропавший вернётся домой.</p>
+                <p class="text-red-600 font-bold mt-4">ВАЖНО: НЕ обращайтесь к экстрасенсам!</p>
+                <p>Добровольцы призывают не обращаться за помощью к людям со «сверхспособностями». Это отнимает драгоценное время и пускает поиски по ложному следу. Ищите вместе с полицией и координаторами ПСО!</p>
             </div>
         </section>
 
@@ -207,42 +204,50 @@
             </div>
 
             <div class="content-card">
-                <h2>Безопасность в городе (Детям)</h2>
-                <h3>Правило трех «О»</h3>
-                <p><strong>Остановись! Оглянись! Окрикни!</strong> Если ты потерялся, первое — стой на месте. Никуда не иди искать маму. Оглянись вокруг. Громко позови тех, с кем ты был.</p>
-                
-                <h3>Надежная идентификация</h3>
-                <p>Используйте силиконовые браслеты с номером телефона родителей, термопечать на одежде или вшитые бирки с ФИО. Также отлично подходят GPS-часы, так как они всегда на руке и ребенок лучше их слышит.</p>
-                
-                <h3>Правило трех «Н» (с незнакомцами)</h3>
-                <p><strong>Никогда, никуда, ни с кем</strong> чужим не уходи! Взрослый человек никогда не попросит помощи у ребенка. Если тебя пытаются увести силой — падай на землю и кричи: <strong>"Я вас не знаю! Вы мне чужой!"</strong></p>
-                
-                <h3>Островки безопасности</h3>
-                <p>Ребенок должен знать, к кому безопасно обратиться за помощью: полицейский, человек с детьми или сотрудник магазина. В магазинах "Пятёрочка", "Перекрёсток", "ВкусВилл" и отделениях "Сбербанка" работают "Островки безопасности" - нужно подойти к сотруднику, он предложит воду (никакой еды!) и вызовет экстренные службы.</p>
+                <h2>Детская безопасность</h2>
+                <h3>Если ребенок потерялся в городе/толпе:</h3>
+                <p><strong>Правило трех «О»:</strong> Остановись! Оглянись! Окликни! Ищут всегда взрослые, ребенку нужно стоять на месте.</p>
+                <p><strong>Безопасный взрослый:</strong> Ребенок должен просить помощи только у полицейского, охранника, людей, работающих здесь (с бейджем), или взрослых с детьми.</p>
+                <p><strong>Островки безопасности:</strong> Если на улице есть работающий магазин «Пятёрочка», «ВкусВилл», «Перекрёсток» или отделение Сбербанка — это безопасные места. Сотрудники обучены алгоритму и помогут.</p>
+                <p><strong>Громкий поиск:</strong> Родителям нужно не бегать молча, а использовать громкую связь (в ТЦ) или громко кричать имя и приметы ребенка.</p>
+                <p><strong>Правило трех «Н»:</strong> Никогда, никуда, ни с кем чужим уходить нельзя.</p>
+                <p><strong>Надежная идентификация:</strong> Используйте GPS-часы или приложения локаторы (например, «Где мои дети», Kids360). Не уводите второго ребенка с собой во время самостоятельных поисков.</p>
             </div>
             
             <div class="content-card">
-                <h2>Цифровая безопасность детей</h2>
-                <p>Чтобы защитить ребенка от кибербуллинга и мошенников в сети, используйте приложения родительского контроля. Рекомендуем отечественное приложение <strong>Заступник</strong> или популярное <strong>Где мои дети</strong>. Они позволяют видеть местоположение ребенка и использовать кнопку SOS.</p>
-            </div>
-
-            <div class="content-card">
-                <h2>Пропажа человека с деменцией</h2>
-                <p>Пожилые люди с нарушениями памяти в зоне особого риска. Они могут забыть свой адрес или имя.</p>
+                <h2>Один дома и на улице</h2>
                 <ul class="mb-3">
-                    <li>Сделайте <strong>термопечать с номером телефона</strong> родственников на всей верхней одежде.</li>
-                    <li>Используйте специальные браслеты с QR-кодом или GPS-трекеры.</li>
+                    <li><strong>Не открывай дверь:</strong> В подъезде может быть темно, а голос похож на голос близкого человека. Никогда не открывай дверь незнакомцам.</li>
+                    <li><strong>Экстренные службы:</strong> Выучи номер телефона экстренной службы спасения — <a href="tel:112" class="font-bold text-red-600">112</a>. Если тебе нужна помощь незамедлительно звони.</li>
+                    <li><strong>Опасные места:</strong> Не подходи к трансформаторным будкам. Не наступай на люки — обходи их. Гулять на стройплощадках, вблизи гаражей, неосвещённых мест и заброшенных зданий — ОПАСНО!</li>
                 </ul>
-                <p class="text-red-600 font-bold mb-2">ВАЖНО ДЛЯ ПРОХОЖИХ:</p>
-                <p>Если вы встретили растерянного пожилого человека, <strong>НЕ ПОКУПАЙТЕ ему билет на проезд</strong>, даже если он очень просит! Вызовите полицию или службу 112, сфотографируйте его и оставайтесь с ним до приезда служб.</p>
+                <p class="text-squad font-bold mt-4 mb-2">РОДИТЕЛЯМ:</p>
+                <p>Объясните ребёнку, в каких случаях вызывать службы (кто-то пытается вскрыть дверь, задымление, возгорание, запах газа). Разработайте вместе с ребёнком безопасный маршрут из дома в школу и обратно.</p>
             </div>
 
             <div class="content-card">
-                <h2>Правила для леса</h2>
+                <h2>Памятка «Как предотвратить пропажу человека с деменцией?»</h2>
+                <ul class="mb-3">
+                    <li><strong>Контроль:</strong> Не оставляйте пожилого родственника без присмотра.</li>
+                    <li><strong>Трекер:</strong> Приобретите GPS-трекер или GPS-часы. Устройство всегда должно быть заряжено и при родственнике.</li>
+                    <li><strong>ФИО и контакты:</strong> Нашейте на одежду бирки с ФИО, датой рождения и вашим телефоном. Закажите специальный браслет.</li>
+                    <li><strong>Актуальное фото:</strong> Часто фотографируйте родственника.</li>
+                    <li><strong>Одежда:</strong> Одежда должна быть яркой и заметной, чтобы выделяться в толпе.</li>
+                </ul>
+                <p class="text-red-600 font-bold mb-2">ДЛЯ ПРОХОЖИХ:</p>
+                <p>Если вы встретили растерянного пожилого человека: наберите <a href="tel:112" class="font-bold text-red-600">112</a>, сфотографируйте его и побудьте с ним до приезда служб. НЕ покупайте ему билет на проезд, даже если он просит!</p>
+            </div>
+
+            <div class="content-card">
+                <h2>Памятка «Как правильно собраться в лес»</h2>
                 <ul>
-                    <li><strong>Яркая одежда:</strong> Надевайте яркие куртки или жилеты. Людей в камуфляже искать невероятно сложно.</li>
-                    <li><strong>Оставайтесь на месте:</strong> Если поняли, что заблудились — остановитесь. <strong>Не затаптывайте свои следы.</strong> Разведите костер (дым — верный знак).</li>
-                    <li><strong>На связи:</strong> Берегите заряд телефона. Дождитесь указаний информационного координатора (инфорга) отряда или службы 112.</li>
+                    <li><strong>Яркая одежда:</strong> Надевайте яркие вещи. Людей в камуфляже искать невероятно сложно.</li>
+                    <li><strong>Компас:</strong> Не даст заблудиться, если умеете им пользоваться.</li>
+                    <li><strong>Свисток:</strong> Звук свистка распространяется гораздо дальше голоса.</li>
+                    <li><strong>Спички:</strong> Костёр даёт тепло, а дым — верный знак для спасателей.</li>
+                    <li><strong>Заряженный мобильный телефон:</strong> Берегите заряд для связи со службой <a href="tel:112" class="font-bold text-red-600">112</a>.</li>
+                    <li><strong>Запас воды и еды:</strong> Обязательно берите с собой, даже если идете "на час".</li>
+                    <li><strong>Оставайтесь на месте:</strong> Если поняли, что заблудились — стой! Не затаптывайте свои следы.</li>
                 </ul>
             </div>
         </section>
@@ -256,84 +261,77 @@
             </div>
 
             <div class="content-card text-center">
-                <div class="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-squad shadow-inner">
-                    <i class="fa-solid fa-headset text-3xl"></i>
+                <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-squad shadow-inner">
+                    <i class="fa-solid fa-headset text-2xl"></i>
                 </div>
-                <h2>Связь с отрядом</h2>
-                <p class="text-sm">ВРОО ПСО "Ты не один"<br>Горячая линия отряда (звонок бесплатный):</p>
+                <h2 class="mb-1">Связь с отрядом</h2>
+                <p class="text-xs">ВРОО ПСО "Ты не один"<br>Горячая линия отряда (круглосуточно):</p>
                 
-                <a href="tel:+79115056898" class="block text-xl font-black text-squad my-4 hover:text-squad_light transition-colors">+7 911 505-68-98</a>
+                <a href="tel:+79115056898" class="block text-xl font-black text-squad mt-3 mb-4 hover:text-squad_light transition-colors">+7 911 505-68-98</a>
                 
-                <hr class="my-6 border-slate-200">
+                <hr class="my-5 border-slate-200">
                 
-                <a href="https://vk.com/im?sel=-32585861" target="_blank" class="w-full block bg-[#0077FF] text-white font-bold rounded-xl py-3.5 shadow-md hover:bg-blue-600 transition-colors mb-3 text-center">
+                <a href="https://vk.com/im?sel=-32585861" target="_blank" class="w-full block bg-[#0077FF] text-white font-bold rounded-xl py-3 shadow-md hover:bg-blue-600 transition-colors mb-2 text-center text-sm">
                     <i class="fa-brands fa-vk mr-2"></i> Написать в сообщество
                 </a>
             </div>
         </section>
     </main>
 
-    <a href="tel:112" class="fixed right-6 sos-btn-safe w-16 h-16 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 pulse-sos z-40 border-2 border-white">
-        <i class="fa-solid fa-phone-volume text-xl mb-0.5"></i>
-        <span class="text-[10px] font-black uppercase tracking-widest leading-none">112</span>
+    <a href="tel:112" class="fixed right-6 sos-btn-safe w-14 h-14 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 pulse-sos z-40 border-2 border-white">
+        <i class="fa-solid fa-phone-volume text-lg mb-0.5"></i>
+        <span class="text-[9px] font-black uppercase tracking-widest leading-none">112</span>
     </a>
 
     <nav class="glass-nav bottom-nav-safe fixed bottom-0 w-full z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.03)] rounded-t-3xl border-x border-slate-200 max-w-2xl mx-auto left-0 right-0">
-        <div class="w-full grid grid-cols-4 h-[75px] px-2">
+        <div class="w-full grid grid-cols-4 h-[70px] px-2">
             <a href="#emergency" class="nav-btn flex flex-col items-center justify-center text-slate-400 hover:text-squad transition-colors relative">
-                <div class="icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 transition-all duration-300">
-                    <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                <div class="icon-bg w-10 h-8 rounded-full flex items-center justify-center mb-0.5 transition-all duration-300">
+                    <i class="fa-solid fa-triangle-exclamation text-lg"></i>
                 </div>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Экстренно</span>
             </a>
 
             <a href="#memos" class="nav-btn flex flex-col items-center justify-center text-slate-400 hover:text-squad transition-colors relative">
-                <div class="icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 transition-all duration-300">
-                    <i class="fa-solid fa-book-medical text-xl"></i>
+                <div class="icon-bg w-10 h-8 rounded-full flex items-center justify-center mb-0.5 transition-all duration-300">
+                    <i class="fa-solid fa-book-medical text-lg"></i>
                 </div>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Памятки</span>
             </a>
             
             <a href="#contacts" class="nav-btn flex flex-col items-center justify-center text-slate-400 hover:text-squad transition-colors relative">
-                <div class="icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 transition-all duration-300">
-                    <i class="fa-solid fa-address-book text-xl"></i>
+                <div class="icon-bg w-10 h-8 rounded-full flex items-center justify-center mb-0.5 transition-all duration-300">
+                    <i class="fa-solid fa-address-book text-lg"></i>
                 </div>
                 <span class="text-[9px] font-bold uppercase tracking-wider">Контакты</span>
             </a>
             
             <a href="https://vk.com/shishin_85" target="_blank" class="nav-btn flex flex-col items-center justify-center text-slate-400 hover:text-squad transition-colors relative">
-                <div class="icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 transition-all duration-300">
-                    <i class="fa-solid fa-code text-xl"></i>
+                <div class="icon-bg w-10 h-8 rounded-full flex items-center justify-center mb-0.5 transition-all duration-300">
+                    <i class="fa-solid fa-code text-lg"></i>
                 </div>
-                <span class="text-[9px] font-bold uppercase tracking-wider">@shishin_85</span>
+                <span class="text-[9px] font-bold tracking-wider">разработчик</span>
             </a>
         </div>
     </nav>
 
     <script>
-        // Инициализация VK Bridge
         if (typeof vkBridge !== 'undefined') {
             vkBridge.send("VKWebAppInit");
         }
 
-        // Функция поделиться приложением с корректной ссылкой
         function shareApp() {
             const shareUrl = 'https://vk.ru/app52784293';
             
-            // Если открыто внутри ВК, используем нативный шаринг ВК
             if (typeof vkBridge !== 'undefined' && vkBridge.supports("VKWebAppShare")) {
                 vkBridge.send("VKWebAppShare", {"link": shareUrl});
-            } 
-            // Если браузер поддерживает нативный Web Share API (мобильные устройства)
-            else if (navigator.share) {
+            } else if (navigator.share) {
                 navigator.share({
                     title: 'ПСО "Ты не один"',
-                    text: 'Приложение поисково-спасательного отряда "Ты не один"',
+                    text: 'Приложение поисково-спасательного отряда "Ты не один". Инструкции и поиск пропавших.',
                     url: shareUrl
                 }).catch((error) => console.log('Ошибка шеринга', error));
-            } 
-            // Фолбэк: копирование в буфер обмена для остальных случаев
-            else {
+            } else {
                 const input = document.createElement('input');
                 input.value = shareUrl;
                 document.body.appendChild(input);
@@ -341,7 +339,6 @@
                 document.execCommand('copy');
                 document.body.removeChild(input);
                 
-                // Всплывающее уведомление (без использования alert)
                 const toast = document.createElement('div');
                 toast.textContent = 'Ссылка на приложение скопирована!';
                 toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-squad text-white px-6 py-3 rounded-2xl text-xs font-bold shadow-xl z-[100] transition-opacity duration-300';
