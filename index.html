@@ -32,6 +32,7 @@
             background-color: #f8fafc;
             color: #1e293b;
         }
+        /* Раздельные классы для отступов, чтобы меню не перекрывало контент и кнопку */
         .pb-main { padding-bottom: calc(env(safe-area-inset-bottom) + 120px); }
         .pt-main { padding-top: calc(env(safe-area-inset-top) + 120px); }
         .bottom-nav-safe { padding-bottom: env(safe-area-inset-bottom); }
@@ -95,7 +96,7 @@
             <!-- Logo and Title clicking returns to Main Page -->
             <button onclick="switchTab('main')" class="flex items-center gap-2 sm:gap-3 text-left focus:outline-none group overflow-hidden max-w-[55%]">
                 <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform overflow-hidden bg-white">
-                    <img src="cNNqyZst-6A-3.jpg" alt="Логотип ПСО" class="w-full h-full object-cover">
+                    <img src="./cNNqyZst-6A-3.jpg" alt="Логотип ПСО" class="w-full h-full object-cover">
                 </div>
                 <div class="truncate">
                     <h1 class="text-[8px] sm:text-[9px] font-black tracking-wider uppercase text-squad leading-tight truncate whitespace-nowrap">ПСО "Ты не один"</h1>
@@ -112,9 +113,6 @@
                 </a>
                 <a href="https://vk.com/pso_tyneodin" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="ВКонтакте">
                     <i class="fa-brands fa-vk text-xs sm:text-sm"></i>
-                </a>
-                <a href="https://t.me/pso_tyneodin" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="Telegram">
-                    <i class="fa-brands fa-telegram text-xs sm:text-sm"></i>
                 </a>
             </div>
         </div>
@@ -136,7 +134,7 @@
                 <p class="text-slate-500 relative z-10">Вологодская региональная общественная организация. Объединяем добровольцев для спасения жизней.</p>
                 
                 <div class="mt-6">
-                    <a href="https://vk.ru/album-32585861_147787229" target="_blank" rel="noopener noreferrer" class="w-full block bg-squad text-white font-bold rounded-xl py-4 shadow-lg hover:bg-squad_light transition-colors active:scale-[0.98] relative z-10 text-center">
+                    <a href="https://vk.com/album-32585861_147787229" target="_blank" rel="noopener noreferrer" class="w-full block bg-squad text-white font-bold rounded-xl py-4 shadow-lg hover:bg-squad_light transition-colors active:scale-[0.98] relative z-10 text-center">
                         <i class="fa-solid fa-images mr-2"></i> Актуальные ориентировки
                     </a>
                 </div>
@@ -157,7 +155,7 @@
                     <i class="fa-solid fa-share-nodes text-xl text-squad"></i>
                     <span class="text-xs">Поделиться</span>
                 </button>
-                <a href="https://vk.ru/shishin_85" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-3 shadow-sm hover:bg-slate-50 transition-colors flex flex-col items-center justify-center gap-2 text-center w-full">
+                <a href="https://vk.com/shishin_85" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-3 shadow-sm hover:bg-slate-50 transition-colors flex flex-col items-center justify-center gap-2 text-center w-full">
                     <i class="fa-solid fa-code text-xl text-squad"></i>
                     <span class="text-xs">Разработчик</span>
                 </a>
@@ -260,7 +258,7 @@
                 </a>
             </div>
 
-            <a href="https://vk.ru/shishin_85" target="_blank" rel="noopener noreferrer" class="w-full block bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-4 shadow-sm hover:bg-slate-50 transition-colors text-center">
+            <a href="https://vk.com/shishin_85" target="_blank" rel="noopener noreferrer" class="w-full block bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-4 shadow-sm hover:bg-slate-50 transition-colors text-center">
                 <i class="fa-solid fa-envelope-open-text text-squad mr-2"></i> Связаться с разработчиком
             </a>
         </section>
@@ -344,7 +342,7 @@
             let shareUrl = window.location.href;
             
             // Fallback for blob:// URLs in preview environments
-            if (shareUrl.startsWith('blob:') || shareUrl === 'about:blank') {
+            if (shareUrl.startsWith('blob:') || shareUrl === 'about:blank' || !shareUrl.startsWith('http')) {
                 shareUrl = 'https://vk.com/pso_tyneodin';
             }
 
