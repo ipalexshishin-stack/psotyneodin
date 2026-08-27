@@ -21,6 +21,7 @@
             }
         }
     </script>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
@@ -77,31 +78,22 @@
             100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-
-        section {
-            scroll-margin-top: 90px; 
-        }
+        html { scroll-behavior: smooth; }
+        section { scroll-margin-top: 90px; }
         
         .chat-slide-up {
             transform: translateY(100%);
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .chat-open .chat-slide-up {
-            transform: translateY(0);
-        }
-        .chat-message {
-            animation: fadeIn 0.3s ease-in-out;
-        }
+        .chat-open .chat-slide-up { transform: translateY(0); }
+        .chat-message { animation: fadeIn 0.3s ease-in-out; }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .typing-dot {
-            animation: typing 1.4s infinite ease-in-out both;
-        }
+        
+        .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
         .typing-dot:nth-child(1) { animation-delay: -0.32s; }
         .typing-dot:nth-child(2) { animation-delay: -0.16s; }
         @keyframes typing {
@@ -109,12 +101,10 @@
             40% { transform: scale(1); }
         }
 
-        .highlight-phone {
-            animation: highlight-pulse 2s infinite;
-        }
+        .highlight-phone { animation: highlight-pulse 2s infinite; }
         @keyframes highlight-pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
             100% { transform: scale(1); }
         }
     </style>
@@ -123,20 +113,21 @@
 
     <header class="fixed top-0 w-full z-50 glass-header">
         <div class="px-4 py-3 flex justify-between items-center text-sm">
+            <!-- Заголовок шапки в одну строку без логотипа -->
             <a href="#" class="flex items-center gap-2 sm:gap-3 text-left focus:outline-none group overflow-hidden max-w-[55%]">
                 <div class="truncate">
-                    <h1 class="text-[10px] font-black tracking-wider uppercase text-squad leading-tight truncate whitespace-nowrap">ПСО "Ты не один"</h1>
+                    <h1 class="text-[10px] sm:text-xs font-black tracking-wider uppercase text-squad leading-tight truncate whitespace-nowrap">ПСО "Ты не один"</h1>
                 </div>
             </a>
             
             <div class="flex items-center gap-1.5 text-lg shrink-0">
-                <a href="#" target="_blank" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="Max">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="Max">
                     <span class="font-bold text-[8px] sm:text-[10px] tracking-tighter">MAX</span>
                 </a>
-                <a href="https://dzen.ru/psotyneodin" target="_blank" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="Дзен">
+                <a href="https://dzen.ru/psotyneodin" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="Дзен">
                     <span class="font-bold text-[8px] sm:text-[10px] tracking-tighter">ДЗЕН</span>
                 </a>
-                <a href="https://vk.com/pso_tyneodin" target="_blank" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="ВКонтакте">
+                <a href="https://vk.com/pso_tyneodin" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors" title="ВКонтакте">
                     <i class="fa-brands fa-vk text-xs sm:text-sm"></i>
                 </a>
             </div>
@@ -150,9 +141,8 @@
 
     <main class="max-w-2xl mx-auto px-4 pt-main pb-main" id="app-container">
         
-        <!-- MAIN SECTION -->
         <section id="main" class="mb-8">
-            <!-- HOTLINE BANNER -->
+            <!-- HOTLINE BANNER - ВЫНЕСЕН НА САМЫЙ ВЕРХ И ВЫДЕЛЕН -->
             <div class="content-card text-center bg-gradient-to-br from-red-50 to-white border-2 border-red-200 mb-6 shadow-md highlight-phone">
                 <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3 text-red-600 shadow-inner">
                     <i class="fa-solid fa-phone-volume text-2xl"></i>
@@ -171,24 +161,24 @@
                 <p class="text-slate-500 relative z-10">Вологодская региональная общественная организация. Объединяем добровольцев для спасения жизней.</p>
                 
                 <div class="mt-6 flex flex-col gap-3">
-                    <a href="https://vk.com/album-32585861_147787229" target="_blank" class="w-full block bg-squad text-white font-bold rounded-xl py-4 shadow-lg hover:bg-squad_light transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
+                    <a href="https://vk.com/album-32585861_147787229" target="_blank" rel="noopener noreferrer" class="w-full block bg-squad text-white font-bold rounded-xl py-4 shadow-lg hover:bg-squad_light transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
                         <i class="fa-solid fa-images mr-2"></i> Актуальные ориентировки
                     </a>
                     
                     <div class="grid grid-cols-2 gap-3">
-                         <a href="https://vk.com/@pso_tyneodin-kak-stat-volonterom-otryada" target="_blank" class="w-full block bg-emerald-600 text-white font-bold rounded-xl py-3 shadow-md hover:bg-emerald-500 transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
+                         <a href="https://vk.com/@pso_tyneodin-kak-stat-volonterom-otryada" target="_blank" rel="noopener noreferrer" class="w-full block bg-emerald-600 text-white font-bold rounded-xl py-3 shadow-md hover:bg-emerald-500 transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
                              <i class="fa-solid fa-hand-holding-heart mr-1"></i> Стать волонтером
                          </a>
-                         <a href="https://vk.com/im/channels/-233922362" target="_blank" class="w-full block bg-amber-500 text-white font-bold rounded-xl py-3 shadow-md hover:bg-amber-400 transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
+                         <a href="https://vk.com/im/channels/-233922362" target="_blank" rel="noopener noreferrer" class="w-full block bg-amber-500 text-white font-bold rounded-xl py-3 shadow-md hover:bg-amber-400 transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
                              <i class="fa-solid fa-bell mr-1"></i> Оповещение
                          </a>
                     </div>
                     
-                    <a href="https://vk.com/@-32585861" target="_blank" class="w-full block bg-cyan-600 text-white font-bold rounded-xl py-3 shadow-md hover:bg-cyan-500 transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
+                    <a href="https://vk.com/@-32585861" target="_blank" rel="noopener noreferrer" class="w-full block bg-cyan-600 text-white font-bold rounded-xl py-3 shadow-md hover:bg-cyan-500 transition-colors active:scale-[0.98] relative z-10 text-center text-xs">
                         <i class="fa-solid fa-book-open mr-1"></i> Статьи и блог отряда
                     </a>
                     
-                    <button onclick="toggleChat(true)" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl py-3.5 shadow-md hover:shadow-lg transition-all active:scale-[0.98] relative z-10 text-center text-sm mt-3 border border-indigo-400/30">
+                    <button type="button" onclick="toggleChat(true)" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl py-3.5 shadow-md hover:shadow-lg transition-all active:scale-[0.98] relative z-10 text-center text-sm mt-3 border border-indigo-400/30">
                         <i class="fa-solid fa-robot text-lg"></i>
                         <span>ИИ-Консультант по безопасности</span>
                     </button>
@@ -196,18 +186,17 @@
             </div>
 
             <div class="grid grid-cols-2 gap-3 mb-4">
-                <button onclick="shareApp()" class="bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-3 shadow-sm hover:bg-slate-50 transition-colors flex flex-col items-center justify-center gap-2">
+                <button type="button" onclick="shareApp()" class="bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-3 shadow-sm hover:bg-slate-50 transition-colors flex flex-col items-center justify-center gap-2">
                     <i class="fa-solid fa-share-nodes text-xl text-squad"></i>
                     <span class="text-xs">Поделиться</span>
                 </button>
-                <a href="https://vk.com/shishin_85" target="_blank" class="bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-3 shadow-sm hover:bg-slate-50 transition-colors flex flex-col items-center justify-center gap-2 text-center w-full">
+                <a href="https://vk.com/shishin_85" target="_blank" rel="noopener noreferrer" class="bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-3 shadow-sm hover:bg-slate-50 transition-colors flex flex-col items-center justify-center gap-2 text-center w-full">
                     <i class="fa-solid fa-code text-xl text-squad"></i>
                     <span class="text-xs">Разработчик</span>
                 </a>
             </div>
         </section>
 
-        <!-- EMERGENCY SECTION -->
         <section id="emergency" class="mb-8">
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600">
@@ -219,13 +208,9 @@
             <div class="content-card border-l-4 border-l-red-500">
                 <h2>ПРОПАЛ ЧЕЛОВЕК? ЧТО ДЕЛАТЬ?</h2>
                 <p><strong>1. Заявление в полицию немедленно!</strong> Правила «трёх суток» не существует! Заявление обязаны принять в момент обращения независимо от места пропажи и степени родства. Звоните 112.</p>
-                
                 <p><strong>2. Оставьте заявку в ПСО "Ты не один".</strong> Позвоните на горячую линию отряда. Это дает официальный старт поискам со стороны волонтеров.</p>
-                
-                <p><strong>3. Не обращайтесь к экстрасенсам.</strong> Добровольцы провели десятки тысяч поисков, и ни разу не было зафиксировано случая, когда помогли бы ясновидящие. Это только отнимает драгоценное время и пускает по ложному следу.</p>
-
+                <p><strong>3. Не обращайтесь к экстрасенсам.</strong> Добровольцы провели десятки тысяч поисков, и ни разу не было зафиксировано случая, когда помогли бы ясновидящие. Это только отнимает драгоценное время.</p>
                 <p><strong>4. Алгоритм «Громкого поиска» (в толпе/ТЦ):</strong> Если ребенок пропал в людном месте, не ищите молча! Обратитесь к охране для перекрытия выходов. Попросите объявить по громкой связи: «Внимание! Потерялся мальчик/девочка (имя, приметы). Просьба подойти к стойке информации».</p>
-
                 <p><strong>5. Не затаптывайте следы!</strong> В лесу не бросайтесь искать самостоятельно толпой. Хаотичный поиск уничтожает следы. Ищите информационного координатора и действуйте строго по его задачам.</p>
             </div>
 
@@ -236,12 +221,11 @@
                     <li>Вспомните все детали: в какой одежде был человек, что было с собой, примечательные черты.</li>
                     <li>Честно отвечайте на вопросы полиции и поисковиков. Не утаивайте информацию (конфликты и пр.).</li>
                     <li>Дома обязательно должен находиться кто-то из родственников.</li>
-                    <li>Не распространяйте объявления с вашими личными номерами — этим воспользуются мошенники. Оптимально указывать контакты полиции и горячую линию отряда.</li>
+                    <li>Не распространяйте объявления с вашими личными номерами — этим воспользуются мошенники. Указывайте контакты полиции и горячую линию отряда.</li>
                 </ul>
             </div>
         </section>
 
-        <!-- MEMOS SECTION -->
         <section id="memos" class="mb-8">
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-squad">
@@ -264,12 +248,12 @@
                 <h3>Островки безопасности</h3>
                 <p>Научите ребенка, что безопасно зайти в магазины-партнеры поисковых отрядов (Пятёрочка, ВкусВилл, Перекрёсток, отделения Сбербанка) и сказать сотруднику: «Я потерялся». Сотрудники обучены помогать в таких ситуациях.</p>
 
-                <h3>Надежная идентификация</h3>
-                <p>В состоянии стресса ребенок может забыть любую информацию, поэтому используйте физические способы идентификации:</p>
+                <h3>Надежная идентификация (Вместо паролей)</h3>
+                <p>В состоянии стресса ребенок может забыть любую информацию или пароль. Используйте надежные физические способы идентификации:</p>
                 <ul>
                     <li>Силиконовые браслеты (с номером телефона или NFC-чипом).</li>
                     <li>Термопечать на одежде или другой тканевой основе.</li>
-                    <li>Бирки с ФИО и контактами родных, надежно вшитые во внутренние карманы одежды, или жетоны.</li>
+                    <li>Бирки с ФИО и контактами родных, надежно вшитые во внутренние карманы одежды.</li>
                     <li>Полностью заряженные <strong>часы с GPS-трекером</strong>. Дети, в отличие от телефона, не теряют их и обычно хорошо слышат звонок.</li>
                 </ul>
             </div>
@@ -279,10 +263,10 @@
                 <p>Смартфон — главный инструмент безопасности. Следите, чтобы ребенок уходил из дома только с полностью заряженным телефоном.</p>
                 <p>Рекомендуемые приложения-трекеры для родительского контроля:</p>
                 <ul>
-                    <li><strong><a href="https://gdemoideti.ru/" target="_blank" class="text-squad underline hover:text-squad_light">Где мои дети / Pingo</a>:</strong> Точная геолокация и история маршрутов.</li>
-                    <li><strong><a href="https://zastupnik.help/" target="_blank" class="text-squad underline hover:text-squad_light">Заступник</a>:</strong> Кнопка SOS, привлечение волонтеров, аудиомониторинг ситуации.</li>
-                    <li><strong><a href="https://kids360.app/ru" target="_blank" class="text-squad underline hover:text-squad_light">Kids360</a>:</strong> Контроль экранного времени и блокировка отвлекающих приложений.</li>
-                    <li><strong><a href="https://families.google/familylink/" target="_blank" class="text-squad underline hover:text-squad_light">Google Family Link</a> / <a href="https://www.kaspersky.ru/safe-kids" target="_blank" class="text-squad underline hover:text-squad_light">Kaspersky Safe Kids</a>:</strong> Базовый контроль и безопасность в сети.</li>
+                    <li><strong><a href="https://gdemoideti.ru/" target="_blank" rel="noopener noreferrer" class="text-squad underline hover:text-squad_light">Где мои дети / Pingo</a>:</strong> Точная геолокация и история маршрутов.</li>
+                    <li><strong><a href="https://zastupnik.help/" target="_blank" rel="noopener noreferrer" class="text-squad underline hover:text-squad_light">Заступник</a>:</strong> Кнопка SOS, привлечение волонтеров, аудиомониторинг ситуации.</li>
+                    <li><strong><a href="https://kids360.app/ru" target="_blank" rel="noopener noreferrer" class="text-squad underline hover:text-squad_light">Kids360</a>:</strong> Контроль экранного времени и блокировка отвлекающих приложений.</li>
+                    <li><strong><a href="https://families.google/familylink/" target="_blank" rel="noopener noreferrer" class="text-squad underline hover:text-squad_light">Google Family Link</a> / <a href="https://www.kaspersky.ru/safe-kids" target="_blank" rel="noopener noreferrer" class="text-squad underline hover:text-squad_light">Kaspersky Safe Kids</a>:</strong> Базовый контроль и безопасность в сети.</li>
                 </ul>
             </div>
 
@@ -299,7 +283,7 @@
 
             <div class="content-card">
                 <h2>Профилактика при деменции</h2>
-                <p>Люди с болезнью Альцгеймера или потерей памяти могут забыть дорогу домой. (Материалы подготовлены при поддержке портала <a href="https://memini.ru/" target="_blank" class="text-squad underline hover:text-squad_light">Memini</a>)</p>
+                <p>Люди с болезнью Альцгеймера или потерей памяти могут забыть дорогу домой. (Материалы подготовлены при поддержке портала <a href="https://memini.ru/" target="_blank" rel="noopener noreferrer" class="text-squad underline hover:text-squad_light">Memini</a>)</p>
                 <ul>
                     <li>Сфотографируйте пожилого родственника (нужно актуальное фото, а не из паспорта 30-летней давности).</li>
                     <li>Вшейте бирочки с информацией в одежду или разложите по всем карманам записки с ФИО и вашими контактами.</li>
@@ -309,7 +293,6 @@
             </div>
         </section>
 
-        <!-- CONTACTS SECTION -->
         <section id="contacts">
             <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-600">
@@ -324,28 +307,27 @@
                 </div>
                 <h2>Связь с отрядом</h2>
                 <p class="text-sm">ВРОО ПСО "Ты не один"<br>Горячая линия отряда (звонок бесплатный):</p>
+                <!-- Уменьшен размер текста номера телефона в контактах -->
                 <a href="tel:+79115056898" class="block text-xl font-black text-squad my-4 hover:text-squad_light transition-colors">+7 911 505-68-98</a>
                 
                 <hr class="my-6 border-slate-200">
                 
-                <a href="https://vk.com/im?sel=-32585861" target="_blank" class="w-full block bg-[#0077FF] text-white font-bold rounded-xl py-3.5 shadow-md hover:bg-blue-600 transition-colors active:scale-[0.98] mb-3 text-center">
+                <a href="https://vk.com/im?sel=-32585861" target="_blank" rel="noopener noreferrer" class="w-full block bg-[#0077FF] text-white font-bold rounded-xl py-3.5 shadow-md hover:bg-blue-600 transition-colors active:scale-[0.98] mb-3 text-center">
                     <i class="fa-brands fa-vk mr-2"></i> Написать в сообщество
                 </a>
             </div>
 
-            <a href="https://vk.com/shishin_85" target="_blank" class="w-full block bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-4 shadow-sm hover:bg-slate-50 transition-colors text-center">
+            <a href="https://vk.com/shishin_85" target="_blank" rel="noopener noreferrer" class="w-full block bg-white border border-slate-200 text-slate-700 font-bold rounded-xl p-4 shadow-sm hover:bg-slate-50 transition-colors text-center">
                 <i class="fa-solid fa-envelope-open-text text-squad mr-2"></i> Связаться с разработчиком
             </a>
         </section>
     </main>
 
-    <!-- FLOATING SOS BUTTON -->
     <a href="tel:112" class="fixed right-4 sm:right-6 w-16 h-16 bg-gradient-to-tr from-red-600 to-red-500 text-white rounded-full shadow-[0_8px_30px_rgba(220,38,38,0.5)] flex flex-col items-center justify-center hover:scale-105 active:scale-95 pulse-sos z-40 border-2 border-white sos-btn-safe">
         <i class="fa-solid fa-phone-volume text-xl mb-0.5"></i>
         <span class="text-[10px] font-black uppercase tracking-widest leading-none">112</span>
     </a>
 
-    <!-- BOTTOM NAVIGATION (Anchor links for scrolling) -->
     <nav class="glass-nav fixed bottom-0 w-full z-50 bottom-nav-safe shadow-[0_-10px_40px_rgba(0,0,0,0.03)] rounded-t-3xl border-x border-slate-200 max-w-2xl mx-auto left-0 right-0">
         <div class="w-full grid grid-cols-3 h-[75px] px-2">
             
@@ -373,11 +355,11 @@
         </div>
     </nav>
 
-    <!-- CHAT MODAL -->
-    <div id="ai-chat-overlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] hidden opacity-0 transition-opacity duration-300 flex-col justify-end" onclick="if(event.target === this) toggleChat(false)">
-        <div class="chat-slide-up bg-slate-50 w-full max-w-2xl mx-auto h-[85vh] sm:h-[80vh] rounded-t-3xl shadow-2xl flex flex-col overflow-hidden border-t border-x border-slate-200">
+    <div id="ai-chat-overlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] hidden opacity-0 transition-opacity duration-300 flex-col justify-end">
+        <!-- Close overlay on clicking outside -->
+        <div class="absolute inset-0 z-0" onclick="toggleChat(false)"></div>
+        <div class="chat-slide-up bg-slate-50 w-full max-w-2xl mx-auto h-[85vh] sm:h-[80vh] rounded-t-3xl shadow-2xl flex flex-col overflow-hidden border-t border-x border-slate-200 relative z-10">
             
-            <!-- Chat Header -->
             <div class="bg-white px-4 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-100 to-purple-100 flex items-center justify-center text-indigo-600 shadow-inner">
@@ -385,31 +367,28 @@
                     </div>
                     <div>
                         <h3 class="font-black text-slate-800 text-sm uppercase tracking-wide m-0 leading-tight">ИИ-Консультант</h3>
-                        <p class="text-[10px] text-slate-500 font-medium">Ответит на вопросы о безопасности</p>
+                        <p class="text-[10px] text-slate-500 font-medium">ПСО "Ты не один"</p>
                     </div>
                 </div>
-                <button onclick="toggleChat(false)" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200 transition-colors">
+                <button type="button" onclick="toggleChat(false)" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200 transition-colors">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <!-- Chat Messages Area -->
             <div id="chat-messages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-4 pb-10">
-                <!-- Welcome Message -->
                 <div class="flex items-start gap-2 max-w-[90%] sm:max-w-[85%] chat-message">
                     <div class="w-8 h-8 rounded-full bg-indigo-100 shrink-0 flex items-center justify-center text-indigo-600 mt-1">
                         <i class="fa-solid fa-robot text-xs"></i>
                     </div>
                     <div class="bg-white border border-slate-200 text-slate-700 px-4 py-3 rounded-2xl rounded-tl-none shadow-sm text-sm">
-                        Здравствуйте! Я интеллектуальный помощник ПСО "Ты не один". Я могу подсказать алгоритм действий при пропаже человека, рассказать о правилах безопасности для детей или помочь настроить родительский контроль. Чем могу помочь?
+                        Здравствуйте! Я интеллектуальный помощник отряда "Ты не один". Подскажу алгоритм действий при пропаже человека, правила безопасности для детей или как настроить родительский контроль. Чем могу помочь?
                     </div>
                 </div>
             </div>
 
-            <!-- Chat Input Area -->
             <div class="bg-white px-3 py-3 sm:px-4 sm:py-4 border-t border-slate-200 shrink-0" style="padding-bottom: calc(env(safe-area-inset-bottom) + 12px);">
-                <form id="chat-form" onsubmit="handleChatSubmit(event)" class="flex items-end gap-2 relative">
-                    <textarea id="chat-input" rows="1" placeholder="Задайте ваш вопрос..." class="w-full bg-slate-100 border-transparent focus:border-indigo-300 focus:bg-white focus:ring-2 focus:ring-indigo-100 text-sm rounded-2xl px-4 py-3 resize-none outline-none transition-all" oninput="this.style.height = ''; this.style.height = Math.min(this.scrollHeight, 120) + 'px'"></textarea>
+                <form id="chat-form" class="flex items-end gap-2 relative">
+                    <textarea id="chat-input" rows="1" placeholder="Задайте ваш вопрос..." class="w-full bg-slate-100 border-transparent focus:border-indigo-300 focus:bg-white focus:ring-2 focus:ring-indigo-100 text-sm rounded-2xl px-4 py-3 resize-none outline-none transition-all"></textarea>
                     <button type="submit" id="chat-send-btn" class="w-11 h-11 shrink-0 bg-indigo-600 text-white rounded-xl flex items-center justify-center hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                         <i class="fa-solid fa-paper-plane text-sm translate-x-[-1px] translate-y-[1px]"></i>
                     </button>
@@ -419,244 +398,238 @@
     </div>
 
     <script>
-        // Intersection Observer to highlight active nav item on scroll
-        document.addEventListener("DOMContentLoaded", () => {
-            const sections = document.querySelectorAll("section");
-            const navLinks = document.querySelectorAll(".nav-btn");
+        // Use safe encapsulation to prevent any blocking global errors
+        document.addEventListener("DOMContentLoaded", function() {
+            // Setup Intersection Observer for navigation highlighting
+            try {
+                const sections = document.querySelectorAll("section");
+                const navLinks = document.querySelectorAll(".nav-btn");
+                const breadcrumbText = document.getElementById('breadcrumb-text');
 
-            const observerOptions = {
-                root: null,
-                rootMargin: "-20% 0px -80% 0px", 
-                threshold: 0
+                const observerOptions = {
+                    root: null,
+                    rootMargin: "-20% 0px -80% 0px", 
+                    threshold: 0
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.getAttribute("id");
+                            
+                            if (breadcrumbText) {
+                                let sectionName = "Раздел";
+                                if (id === 'main') sectionName = "Главная";
+                                if (id === 'emergency') sectionName = "Экстренно";
+                                if (id === 'memos') sectionName = "Памятки";
+                                if (id === 'contacts') sectionName = "Контакты";
+                                breadcrumbText.textContent = sectionName;
+                            }
+
+                            navLinks.forEach(link => {
+                                link.classList.remove("text-squad");
+                                link.classList.add("text-slate-400");
+                                const iconBg = link.querySelector(".icon-bg");
+                                if (iconBg) iconBg.classList.remove("bg-blue-50", "text-squad");
+                                
+                                if (link.getAttribute("href") === `#${id}`) {
+                                    link.classList.add("text-squad");
+                                    link.classList.remove("text-slate-400");
+                                    if (iconBg) iconBg.classList.add("bg-blue-50", "text-squad");
+                                }
+                            });
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(sec => observer.observe(sec));
+            } catch(e) {
+                console.error("Observer Error:", e);
+            }
+
+            // Share API implementation
+            window.shareApp = function() {
+                try {
+                    let shareUrl = window.location.href;
+                    if (!shareUrl.startsWith('http')) {
+                        shareUrl = 'https://vk.com/pso_tyneodin';
+                    }
+
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'ПСО "Ты не один"',
+                            text: 'Справочник для поиска пропавших людей и безопасности.',
+                            url: shareUrl,
+                        }).catch(err => console.log("Share cancelled", err));
+                    } else {
+                        const dummy = document.createElement('input');
+                        document.body.appendChild(dummy);
+                        dummy.value = shareUrl;
+                        dummy.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(dummy);
+                        
+                        const toast = document.createElement('div');
+                        toast.textContent = 'Ссылка скопирована';
+                        toast.className = 'fixed top-24 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-4 py-2 rounded-full text-sm z-50 shadow-lg transition-opacity duration-300';
+                        document.body.appendChild(toast);
+                        setTimeout(() => {
+                            toast.style.opacity = '0';
+                            setTimeout(() => toast.remove(), 300);
+                        }, 2000);
+                    }
+                } catch(e) {
+                    console.error("Share Error:", e);
+                }
             };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute("id");
-                        
-                        // Update breadcrumb
-                        let sectionName = "Раздел";
-                        if (id === 'main') sectionName = "Главная";
-                        if (id === 'emergency') sectionName = "Экстренно";
-                        if (id === 'memos') sectionName = "Памятки";
-                        if (id === 'contacts') sectionName = "Контакты";
-                        document.getElementById('breadcrumb-text').textContent = sectionName;
+            // AI Chat Logic Implementation
+            const chatOverlay = document.getElementById('ai-chat-overlay');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
+            const chatForm = document.getElementById('chat-form');
+            let chatHistory = [];
 
-                        // Update nav styling
-                        navLinks.forEach(link => {
-                            link.classList.remove("text-squad");
-                            link.classList.add("text-slate-400");
-                            link.querySelector(".icon-bg").classList.remove("bg-blue-50", "text-squad");
-                            
-                            if (link.getAttribute("href") === `#${id}`) {
-                                link.classList.add("text-squad");
-                                link.classList.remove("text-slate-400");
-                                link.querySelector(".icon-bg").classList.add("bg-blue-50", "text-squad");
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(sec => observer.observe(sec));
-        });
-
-        // Share API
-        function shareApp() {
-            let shareUrl = window.location.href;
-            
-            if (shareUrl.startsWith('blob:') || shareUrl === 'about:blank' || !shareUrl.startsWith('http')) {
-                shareUrl = 'https://vk.com/pso_tyneodin';
-            }
-
-            if (navigator.share) {
-                navigator.share({
-                    title: 'ПСО "Ты не один"',
-                    text: 'Справочник для поиска пропавших людей и безопасности.',
-                    url: shareUrl,
-                }).catch(console.error);
-            } else {
-                const dummy = document.createElement('input');
-                document.body.appendChild(dummy);
-                dummy.value = shareUrl;
-                dummy.select();
-                document.execCommand('copy');
-                document.body.removeChild(dummy);
-                
-                const toast = document.createElement('div');
-                toast.textContent = 'Ссылка скопирована';
-                toast.className = 'fixed top-24 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-4 py-2 rounded-full text-sm z-50 shadow-lg transition-opacity duration-300';
-                document.body.appendChild(toast);
-                setTimeout(() => {
-                    toast.style.opacity = '0';
-                    setTimeout(() => toast.remove(), 300);
-                }, 2000);
-            }
-        }
-
-        // AI Chat Logic
-        const chatOverlay = document.getElementById('ai-chat-overlay');
-        const chatMessages = document.getElementById('chat-messages');
-        const chatInput = document.getElementById('chat-input');
-        const chatSendBtn = document.getElementById('chat-send-btn');
-        let chatHistory = [];
-
-        const SYSTEM_PROMPT = `Вы — вежливый, профессиональный и эмпатичный ИИ-консультант поисково-спасательного отряда "Ты не один" (Вологодская область).
-Ваша задача — помогать пользователям, предоставляя краткие, четкие и понятные инструкции по безопасности и поиску пропавших людей.
+            const SYSTEM_PROMPT = `Вы — вежливый, профессиональный и эмпатичный ИИ-консультант поисково-спасательного отряда "Ты не один" (Вологодская область).
+Ваша задача — помогать пользователям, предоставляя краткие, четкие и понятные инструкции по безопасности.
 Опирайтесь на базу знаний:
-- При пропаже человека: правило "трех суток" - миф, нужно немедленно звонить в 112 и на горячую линию отряда. Экстрасенсы не помогают. Заявление в полицию обязаны принять сразу.
+- При пропаже человека: немедленно звонить в 112 и на горячую линию отряда. Экстрасенсы не помогают. Заявление в полицию обязаны принять сразу.
 - В лесу: оставаться на месте, развести костер (дым - верный знак), откликаться шумом на шум (использовать свисток), надевать яркую одежду, брать заряженный телефон.
 - Детям в городе (правило трех "О"): Остановись, Оглянись, Окрикни.
 - Детям в городе (правило трех "Н"): Никогда, Никуда, Ни с кем не уходи. Искать "безопасных взрослых" (полицейский, взрослый с ребенком, охранник магазина).
 - Островки безопасности: Пятёрочка, ВкусВилл, Перекрёсток, Сбербанк.
 - Безопасность дементных пожилых: вшить бирки, использовать GPS-трекеры, фотографировать в актуальном виде.
-Не придумывайте несуществующих номеров телефонов. Если спрашивают контакты, давайте 112 и номер отряда +7 911 505-68-98.
-Пишите краткими абзацами. Используйте маркеры или списки для удобства чтения.`;
+Не придумывайте несуществующих номеров телефонов. Давайте только 112 и номер отряда +7 911 505-68-98. Никаких сторонних отрядов не упоминать.`;
 
-        function toggleChat(show) {
-            if (show) {
-                chatOverlay.classList.remove('hidden');
-                chatOverlay.classList.add('flex');
-                // Trigger reflow
-                void chatOverlay.offsetWidth;
-                chatOverlay.classList.remove('opacity-0');
-                chatOverlay.classList.add('chat-open');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                setTimeout(() => chatInput.focus(), 300);
-            } else {
-                chatOverlay.classList.remove('chat-open');
-                chatOverlay.classList.add('opacity-0');
-                document.body.style.overflow = '';
-                setTimeout(() => {
-                    chatOverlay.classList.remove('flex');
-                    chatOverlay.classList.add('hidden');
-                }, 300);
-            }
-        }
-
-        function appendMessage(text, isUser = false) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `flex items-start gap-2 max-w-[90%] sm:max-w-[85%] chat-message ${isUser ? 'ml-auto flex-row-reverse' : ''}`;
-            
-            const avatar = document.createElement('div');
-            avatar.className = `w-8 h-8 rounded-full shrink-0 flex items-center justify-center mt-1 ${isUser ? 'bg-slate-200 text-slate-600' : 'bg-indigo-100 text-indigo-600'}`;
-            avatar.innerHTML = isUser ? '<i class="fa-solid fa-user text-xs"></i>' : '<i class="fa-solid fa-robot text-xs"></i>';
-            
-            const bubble = document.createElement('div');
-            bubble.className = `px-4 py-3 rounded-2xl shadow-sm text-sm ${isUser ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white border border-slate-200 text-slate-700 rounded-tl-none'}`;
-            
-            // Basic markdown parsing for bold text and line breaks
-            let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            formattedText = formattedText.replace(/\n/g, '<br>');
-            bubble.innerHTML = formattedText;
-
-            msgDiv.appendChild(avatar);
-            msgDiv.appendChild(bubble);
-            chatMessages.appendChild(msgDiv);
-            
-            scrollToBottom();
-        }
-
-        function scrollToBottom() {
-            chatMessages.scrollTo({
-                top: chatMessages.scrollHeight,
-                behavior: 'smooth'
-            });
-        }
-
-        function showLoading() {
-            const loadingDiv = document.createElement('div');
-            loadingDiv.id = 'chat-loading';
-            loadingDiv.className = 'flex items-start gap-2 max-w-[85%] chat-message';
-            loadingDiv.innerHTML = `
-                <div class="w-8 h-8 rounded-full bg-indigo-100 shrink-0 flex items-center justify-center text-indigo-600 mt-1">
-                    <i class="fa-solid fa-robot text-xs"></i>
-                </div>
-                <div class="bg-white border border-slate-200 px-4 py-4 rounded-2xl rounded-tl-none shadow-sm flex gap-1 items-center h-[46px]">
-                    <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
-                    <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
-                    <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
-                </div>
-            `;
-            chatMessages.appendChild(loadingDiv);
-            scrollToBottom();
-        }
-
-        function hideLoading() {
-            const loadingDiv = document.getElementById('chat-loading');
-            if (loadingDiv) loadingDiv.remove();
-        }
-
-        async function callGeminiAPI(message, retries = 3) {
-            const apiKey = ""; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-            
-            const payload = {
-                contents: [
-                    ...chatHistory,
-                    { role: "user", parts: [{ text: message }] }
-                ],
-                systemInstruction: {
-                    parts: [{ text: SYSTEM_PROMPT }]
+            window.toggleChat = function(show) {
+                if (show) {
+                    chatOverlay.classList.remove('hidden');
+                    chatOverlay.classList.add('flex');
+                    void chatOverlay.offsetWidth; // Reflow
+                    chatOverlay.classList.remove('opacity-0');
+                    chatOverlay.classList.add('chat-open');
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => chatInput.focus(), 300);
+                } else {
+                    chatOverlay.classList.remove('chat-open');
+                    chatOverlay.classList.add('opacity-0');
+                    document.body.style.overflow = '';
+                    setTimeout(() => {
+                        chatOverlay.classList.remove('flex');
+                        chatOverlay.classList.add('hidden');
+                    }, 300);
                 }
             };
 
-            for (let i = 0; i < retries; i++) {
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    
-                    if (!response.ok) throw new Error('API Error');
-                    
-                    const data = await response.json();
-                    if (data.candidates && data.candidates[0].content) {
-                        return data.candidates[0].content.parts[0].text;
-                    } else {
-                        throw new Error('Invalid response structure');
-                    }
-                } catch (error) {
-                    if (i === retries - 1) throw error;
-                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+            function appendMessage(text, isUser = false) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `flex items-start gap-2 max-w-[90%] sm:max-w-[85%] chat-message ${isUser ? 'ml-auto flex-row-reverse' : ''}`;
+                
+                const avatar = document.createElement('div');
+                avatar.className = `w-8 h-8 rounded-full shrink-0 flex items-center justify-center mt-1 ${isUser ? 'bg-slate-200 text-slate-600' : 'bg-indigo-100 text-indigo-600'}`;
+                avatar.innerHTML = isUser ? '<i class="fa-solid fa-user text-xs"></i>' : '<i class="fa-solid fa-robot text-xs"></i>';
+                
+                const bubble = document.createElement('div');
+                bubble.className = `px-4 py-3 rounded-2xl shadow-sm text-sm ${isUser ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white border border-slate-200 text-slate-700 rounded-tl-none'}`;
+                
+                let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                formattedText = formattedText.replace(/\n/g, '<br>');
+                bubble.innerHTML = formattedText;
+
+                msgDiv.appendChild(avatar);
+                msgDiv.appendChild(bubble);
+                chatMessages.appendChild(msgDiv);
+                
+                chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+            }
+
+            function showLoading() {
+                const loadingDiv = document.createElement('div');
+                loadingDiv.id = 'chat-loading';
+                loadingDiv.className = 'flex items-start gap-2 max-w-[85%] chat-message';
+                loadingDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-indigo-100 shrink-0 flex items-center justify-center text-indigo-600 mt-1">
+                        <i class="fa-solid fa-robot text-xs"></i>
+                    </div>
+                    <div class="bg-white border border-slate-200 px-4 py-4 rounded-2xl rounded-tl-none shadow-sm flex gap-1 items-center h-[46px]">
+                        <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
+                        <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
+                        <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
+                    </div>
+                `;
+                chatMessages.appendChild(loadingDiv);
+                chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+            }
+
+            function hideLoading() {
+                const loadingDiv = document.getElementById('chat-loading');
+                if (loadingDiv) loadingDiv.remove();
+            }
+
+            async function callGeminiAPI(message) {
+                const apiKey = ""; 
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                
+                const payload = {
+                    contents: [...chatHistory, { role: "user", parts: [{ text: message }] }],
+                    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] }
+                };
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) throw new Error('API Error');
+                
+                const data = await response.json();
+                if (data.candidates && data.candidates[0].content) {
+                    return data.candidates[0].content.parts[0].text;
                 }
+                throw new Error('Invalid response structure');
             }
-        }
 
-        async function handleChatSubmit(e) {
-            e.preventDefault();
-            const message = chatInput.value.trim();
-            if (!message) return;
+            if (chatForm) {
+                chatForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const message = chatInput.value.trim();
+                    if (!message) return;
 
-            chatInput.value = '';
-            chatInput.style.height = '';
-            chatSendBtn.disabled = true;
-            appendMessage(message, true);
-            showLoading();
+                    chatInput.value = '';
+                    chatInput.style.height = '';
+                    chatSendBtn.disabled = true;
+                    appendMessage(message, true);
+                    showLoading();
 
-            try {
-                const responseText = await callGeminiAPI(message);
-                
-                chatHistory.push({ role: "user", parts: [{ text: message }] });
-                chatHistory.push({ role: "model", parts: [{ text: responseText }] });
-                
-                hideLoading();
-                appendMessage(responseText, false);
-            } catch (error) {
-                hideLoading();
-                appendMessage("Извините, произошла ошибка при соединении с сервером. Попробуйте задать вопрос немного позже.", false);
-            } finally {
-                chatSendBtn.disabled = false;
-                chatInput.focus();
+                    try {
+                        const responseText = await callGeminiAPI(message);
+                        chatHistory.push({ role: "user", parts: [{ text: message }] });
+                        chatHistory.push({ role: "model", parts: [{ text: responseText }] });
+                        hideLoading();
+                        appendMessage(responseText, false);
+                    } catch (error) {
+                        hideLoading();
+                        appendMessage("Извините, произошла ошибка при соединении с сервером. Попробуйте задать вопрос немного позже.", false);
+                    } finally {
+                        chatSendBtn.disabled = false;
+                        chatInput.focus();
+                    }
+                });
             }
-        }
 
-        chatInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                document.getElementById('chat-form').dispatchEvent(new Event('submit'));
+            if (chatInput) {
+                chatInput.addEventListener('input', function() {
+                    this.style.height = '';
+                    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+                });
+                chatInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        chatForm.dispatchEvent(new Event('submit'));
+                    }
+                });
             }
         });
     </script>
