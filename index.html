@@ -107,13 +107,13 @@
             <div class="flex items-center gap-2 text-xl">
                  <a href="https://dzen.ru/psotyneodin" target="_blank" class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="Дзен">
                     <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M24 0C24 13.2548 34.7452 24 48 24C34.7452 24 24 34.7452 24 48C24 34.7452 13.2548 24 0 24C13.2548 24 24 13.2548 24 0Z" />
+                        <path d="M23.1119 5.37894C23.6337 4.88764 24.3663 4.88764 24.8881 5.37894L42.6108 22.0624C43.1298 22.551 43.1298 23.449 42.6108 23.9376L24.8881 40.6211C24.3663 41.1124 23.6337 41.1124 23.1119 40.6211L5.38924 23.9376C4.87023 23.449 4.87023 22.551 5.38924 22.0624L23.1119 5.37894Z" />
                     </svg>
                 </a>
                 <a href="https://vk.com/pso_tyneodin" target="_blank" class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="ВКонтакте">
                     <i class="fa-brands fa-vk"></i>
                 </a>
-                <a href="#" class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="Max">
+                <a href="https://max.ru/channel_psotyneodin" target="_blank" class="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-squad hover:bg-squad hover:text-white transition-colors shadow-sm" title="Max">
                     <span class="text-[10px] font-black">MAX</span>
                 </a>
             </div>
@@ -305,112 +305,54 @@
                 <div class="icon-bg w-12 h-8 rounded-full flex items-center justify-center mb-1 transition-all duration-300">
                     <i class="fa-solid fa-code text-xl"></i>
                 </div>
-                <span class="text-[9px] font-bold uppercase tracking-wider text-center">Разработчик</span>
+                <span class="text-[9px] font-bold uppercase tracking-wider">@shishin_85</span>
             </a>
         </div>
     </nav>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            try {
-                if (window.vkBridge) {
-                    vkBridge.send('VKWebAppInit').catch(console.error);
-                }
-            } catch (e) {
-                console.error('VK Bridge init error', e);
-            }
+        // Инициализация VK Bridge
+        if (typeof vkBridge !== 'undefined') {
+            vkBridge.send("VKWebAppInit");
+        }
 
-            const sections = document.querySelectorAll("section");
-            const navLinks = document.querySelectorAll(".nav-btn");
-            const breadcrumbText = document.getElementById('breadcrumb-text');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: "-20% 0px -80% 0px", 
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute("id");
-                        
-                        if (breadcrumbText) {
-                            let sectionName = "Раздел";
-                            if (id === 'main') sectionName = "Главная";
-                            if (id === 'emergency') sectionName = "Экстренно";
-                            if (id === 'memos') sectionName = "Памятки";
-                            if (id === 'contacts') sectionName = "Контакты";
-                            breadcrumbText.textContent = sectionName;
-                        }
-
-                        navLinks.forEach(link => {
-                            link.classList.remove("text-squad");
-                            link.classList.add("text-slate-400");
-                            const iconBg = link.querySelector(".icon-bg");
-                            if (iconBg) iconBg.classList.remove("bg-blue-50", "text-squad");
-                            
-                            if (link.getAttribute("href") === `#${id}`) {
-                                link.classList.add("text-squad");
-                                link.classList.remove("text-slate-400");
-                                if (iconBg) iconBg.classList.add("bg-blue-50", "text-squad");
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(sec => observer.observe(sec));
-
-            // Кастомное уведомление вместо alert()
-            function showToast(message) {
+        // Функция поделиться приложением с корректной ссылкой
+        function shareApp() {
+            const shareUrl = 'https://vk.ru/app52784293';
+            
+            // Если открыто внутри ВК, используем нативный шаринг ВК
+            if (typeof vkBridge !== 'undefined' && vkBridge.supports("VKWebAppShare")) {
+                vkBridge.send("VKWebAppShare", {"link": shareUrl});
+            } 
+            // Если браузер поддерживает нативный Web Share API (мобильные устройства)
+            else if (navigator.share) {
+                navigator.share({
+                    title: 'ПСО "Ты не один"',
+                    text: 'Приложение поисково-спасательного отряда "Ты не один"',
+                    url: shareUrl
+                }).catch((error) => console.log('Ошибка шеринга', error));
+            } 
+            // Фолбэк: копирование в буфер обмена для остальных случаев
+            else {
+                const input = document.createElement('input');
+                input.value = shareUrl;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                
+                // Всплывающее уведомление (без использования alert)
                 const toast = document.createElement('div');
-                toast.className = 'fixed top-24 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white px-5 py-3 rounded-xl shadow-xl z-50 text-sm font-bold transition-opacity duration-300 pointer-events-none opacity-0';
-                toast.innerText = message;
+                toast.textContent = 'Ссылка на приложение скопирована!';
+                toast.className = 'fixed bottom-24 left-1/2 transform -translate-x-1/2 bg-squad text-white px-6 py-3 rounded-2xl text-xs font-bold shadow-xl z-[100] transition-opacity duration-300';
                 document.body.appendChild(toast);
                 
-                // Анимация появления
-                setTimeout(() => { toast.classList.remove('opacity-0'); }, 10);
-                // Удаление
-                setTimeout(() => { 
-                    toast.classList.add('opacity-0'); 
-                    setTimeout(() => toast.remove(), 300); 
-                }, 2500);
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    setTimeout(() => toast.remove(), 300);
+                }, 2000);
             }
-
-            window.shareApp = function() {
-                try {
-                    let shareUrl = window.location.href;
-                    // Исправление ссылки для шеринга
-                    if (!shareUrl.startsWith('http') || shareUrl.includes('blob:') || shareUrl.includes('googleusercontent')) {
-                        shareUrl = 'https://vk.com/pso_tyneodin';
-                    }
-
-                    if (window.vkBridge && vkBridge.supports('VKWebAppShare')) {
-                        vkBridge.send('VKWebAppShare', { "link": shareUrl });
-                        return;
-                    }
-
-                    if (navigator.share) {
-                        navigator.share({
-                            title: 'ПСО "Ты не один"',
-                            text: 'Справочник для поиска пропавших людей и безопасности.',
-                            url: shareUrl,
-                        }).catch(err => console.log("Share cancelled", err));
-                    } else {
-                        const dummy = document.createElement('input');
-                        document.body.appendChild(dummy);
-                        dummy.value = shareUrl;
-                        dummy.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(dummy);
-                        showToast('Ссылка на приложение скопирована!');
-                    }
-                } catch(e) {
-                    console.error("Share Error:", e);
-                }
-            };
-        });
+        }
     </script>
 </body>
 </html>
