@@ -6,6 +6,7 @@
     <title>ПСО "Ты не один"</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -383,6 +384,31 @@
     </div>
 
     <script>
+        try {
+            if (window.vkBridge) {
+                vkBridge.send('VKWebAppInit').catch(console.error);
+            }
+        } catch (e) {
+            console.error('VK Bridge init error', e);
+        }
+
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a');
+            if (link) {
+                const href = link.getAttribute('href');
+                if (href && (href.startsWith('http://') || href.startsWith('https://'))) {
+                    try {
+                        if (window.vkBridge && vkBridge.supports('VKWebAppOpenUrl')) {
+                            e.preventDefault();
+                            vkBridge.send('VKWebAppOpenUrl', { "url": link.href });
+                        }
+                    } catch (err) {
+                        console.error('VK Bridge URL error', err);
+                    }
+                }
+            }
+        });
+
         document.addEventListener("DOMContentLoaded", function() {
             
             const sections = document.querySelectorAll("section");
@@ -432,6 +458,11 @@
                     let shareUrl = window.location.href;
                     if (!shareUrl.startsWith('http')) {
                         shareUrl = 'https://vk.com/pso_tyneodin';
+                    }
+
+                    if (window.vkBridge && vkBridge.supports('VKWebAppShare')) {
+                        vkBridge.send('VKWebAppShare', { "link": shareUrl });
+                        return;
                     }
 
                     if (navigator.share) {
