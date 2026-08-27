@@ -81,26 +81,6 @@
         
         html { scroll-behavior: smooth; }
         section { scroll-margin-top: 90px; }
-        
-        .chat-slide-up {
-            transform: translateY(100%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .chat-open .chat-slide-up { transform: translateY(0); }
-        .chat-message { animation: fadeIn 0.3s ease-in-out; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes typing {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
 
         .highlight-phone { animation: highlight-pulse 2s infinite; }
         @keyframes highlight-pulse {
@@ -148,7 +128,7 @@
                 </div>
                 <h2 class="text-xl font-black text-red-600 uppercase mb-1">Горячая линия отряда</h2>
                 <p class="text-xs text-slate-600 mb-3 font-semibold">Работает круглосуточно. Звонок бесплатный.</p>
-                <a href="tel:+79115056898" class="block text-3xl sm:text-4xl font-black text-red-600 hover:text-red-700 transition-colors bg-white py-3 rounded-xl shadow-sm border border-red-100">
+                <a href="tel:+79115056898" class="block text-xl sm:text-2xl font-black text-red-600 hover:text-red-700 transition-colors bg-white py-3 rounded-xl shadow-sm border border-red-100">
                     +7 911 505-68-98
                 </a>
                 <p class="text-[10px] text-slate-500 mt-3">Для вызова экстренных служб всегда звоните <a href="tel:112" class="font-bold underline text-slate-700">112</a></p>
@@ -160,6 +140,10 @@
                 <p class="text-slate-500 relative z-10">Вологодская региональная общественная организация. Объединяем добровольцев для спасения жизней.</p>
                 
                 <div class="mt-6 flex flex-col gap-3">
+                    <a href="https://vk.com/@pso_tyneodin-zayavka-na-poisk-propavshego" target="_blank" rel="noopener noreferrer" class="w-full block bg-red-600 text-white font-bold rounded-xl py-3 shadow-lg hover:bg-red-500 transition-colors relative z-10 text-center text-xs uppercase tracking-wider">
+                        <i class="fa-solid fa-magnifying-glass mr-2"></i> Заявка на поиск
+                    </a>
+                    
                     <a href="https://vk.com/album-32585861_147787229" target="_blank" rel="noopener noreferrer" class="w-full block bg-squad text-white font-bold rounded-xl py-3 shadow-lg hover:bg-squad_light transition-colors relative z-10 text-center text-xs">
                         <i class="fa-solid fa-images mr-2"></i> Актуальные ориентировки
                     </a>
@@ -176,11 +160,6 @@
                     <a href="https://vk.com/@-32585861" target="_blank" rel="noopener noreferrer" class="w-full block bg-cyan-600 text-white font-bold rounded-xl py-3 shadow-md hover:bg-cyan-500 transition-colors relative z-10 text-center text-xs">
                         <i class="fa-solid fa-book-open mr-1"></i> Статьи и блог отряда
                     </a>
-                    
-                    <button type="button" onclick="toggleChat(true)" class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-xl py-3.5 shadow-md hover:shadow-lg transition-all relative z-10 text-center text-sm mt-3 border border-indigo-400/30">
-                        <i class="fa-solid fa-robot text-lg"></i>
-                        <span>ИИ-Консультант по безопасности</span>
-                    </button>
                 </div>
             </div>
 
@@ -251,7 +230,7 @@
                     <li><strong>Заброшки:</strong> Полуразрушенные дома, шахты, пещеры, старые погреба. Очень опасна старая мебель и шкафы внутри таких зданий.</li>
                 </ul>
 
-                <h3>Надежная идентификация (вместо паролей)</h3>
+                <h3>Надежная идентификация</h3>
                 <p>Используйте надежные физические способы идентификации ребенка:</p>
                 <ul>
                     <li>Силиконовые браслеты или браслеты с QR-кодом.</li>
@@ -341,47 +320,6 @@
             </a>
         </div>
     </nav>
-
-    <div id="ai-chat-overlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] hidden opacity-0 transition-opacity duration-300 flex-col justify-end">
-        <div class="absolute inset-0 z-0" onclick="toggleChat(false)"></div>
-        <div class="chat-slide-up bg-slate-50 w-full max-w-2xl mx-auto h-[85vh] sm:h-[80vh] rounded-t-3xl shadow-2xl flex flex-col overflow-hidden border-t border-x border-slate-200 relative z-10">
-            
-            <div class="bg-white px-4 py-4 border-b border-slate-200 flex items-center justify-between shrink-0">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-100 to-purple-100 flex items-center justify-center text-indigo-600 shadow-inner">
-                        <i class="fa-solid fa-robot text-lg"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-black text-slate-800 text-sm uppercase tracking-wide m-0 leading-tight">ИИ-Консультант</h3>
-                        <p class="text-[10px] text-slate-500 font-medium">ПСО "Ты не один"</p>
-                    </div>
-                </div>
-                <button type="button" onclick="toggleChat(false)" class="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center hover:bg-slate-200 transition-colors">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-
-            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 flex flex-col gap-4 pb-10">
-                <div class="flex items-start gap-2 max-w-[90%] sm:max-w-[85%] chat-message">
-                    <div class="w-8 h-8 rounded-full bg-indigo-100 shrink-0 flex items-center justify-center text-indigo-600 mt-1">
-                        <i class="fa-solid fa-robot text-xs"></i>
-                    </div>
-                    <div class="bg-white border border-slate-200 text-slate-700 px-4 py-3 rounded-2xl rounded-tl-none shadow-sm text-sm">
-                        Здравствуйте! Я интеллектуальный помощник отряда "Ты не один". Подскажу алгоритмы действий при пропаже, правила безопасности в городе или как настроить родительский контроль. Чем могу помочь?
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white px-3 py-3 sm:px-4 sm:py-4 border-t border-slate-200 shrink-0" style="padding-bottom: calc(env(safe-area-inset-bottom) + 12px);">
-                <form id="chat-form" class="flex items-end gap-2 relative">
-                    <textarea id="chat-input" rows="1" placeholder="Задайте ваш вопрос..." class="w-full bg-slate-100 border-transparent focus:border-indigo-300 focus:bg-white focus:ring-2 focus:ring-indigo-100 text-sm rounded-2xl px-4 py-3 resize-none outline-none transition-all"></textarea>
-                    <button type="submit" id="chat-send-btn" class="w-11 h-11 shrink-0 bg-indigo-600 text-white rounded-xl flex items-center justify-center hover:bg-indigo-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-                        <i class="fa-solid fa-paper-plane text-sm translate-x-[-1px] translate-y-[1px]"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script>
         try {
@@ -492,155 +430,6 @@
                     console.error("Share Error:", e);
                 }
             };
-
-            const chatOverlay = document.getElementById('ai-chat-overlay');
-            const chatMessages = document.getElementById('chat-messages');
-            const chatInput = document.getElementById('chat-input');
-            const chatSendBtn = document.getElementById('chat-send-btn');
-            const chatForm = document.getElementById('chat-form');
-            let chatHistory = [];
-
-            const SYSTEM_PROMPT = `Вы — вежливый, профессиональный и эмпатичный ИИ-консультант поисково-спасательного отряда "Ты не один" (Вологодская область).
-Опирайтесь на базу знаний:
-- При пропаже человека: немедленно звонить 112 и +7 911 505-68-98. Заявление в полицию обязаны принять сразу. Правила "трех суток" нет.
-- Алгоритм поиска в городе: громкий поиск, запросить распечатку звонков, обзвонить бюро несчастных случаев, проверять подъезд каждые 12 часов.
-- Островки безопасности (Пятерочка, ВкусВилл, Перекресток, Сбербанк): потерявшемуся предложат ТОЛЬКО воду (кормить нельзя) и вызовут полицию.
-- В лесу: оставаться на месте, не затаптывать следы, развести костер, откликаться свистком на шум, надевать яркую одежду, слушать инфорга.
-- Деменция: использовать GPS-трекеры, термопечать на одежде. Если встретили дезориентированного: НЕ покупать билет, сфотографировать, вызвать 112, дождаться полицию.
-- Детям (3 "О"): Остановись, Оглянись, Окрикни. (3 "Н"): Никогда, Никуда, Ни с кем.
-- Опасные места: Колодцы и заброшки.
-- Безопасный взрослый: полицейский, человек с детьми, сотрудник с бейджем.
-Не придумывайте несуществующих номеров. Никаких сторонних отрядов не упоминать, только "Ты не один".`;
-
-            window.toggleChat = function(show) {
-                if (show) {
-                    chatOverlay.classList.remove('hidden');
-                    chatOverlay.classList.add('flex');
-                    void chatOverlay.offsetWidth;
-                    chatOverlay.classList.remove('opacity-0');
-                    chatOverlay.classList.add('chat-open');
-                    document.body.style.overflow = 'hidden';
-                    setTimeout(() => chatInput.focus(), 300);
-                } else {
-                    chatOverlay.classList.remove('chat-open');
-                    chatOverlay.classList.add('opacity-0');
-                    document.body.style.overflow = '';
-                    setTimeout(() => {
-                        chatOverlay.classList.remove('flex');
-                        chatOverlay.classList.add('hidden');
-                    }, 300);
-                }
-            };
-
-            function appendMessage(text, isUser = false) {
-                const msgDiv = document.createElement('div');
-                msgDiv.className = `flex items-start gap-2 max-w-[90%] sm:max-w-[85%] chat-message ${isUser ? 'ml-auto flex-row-reverse' : ''}`;
-                
-                const avatar = document.createElement('div');
-                avatar.className = `w-8 h-8 rounded-full shrink-0 flex items-center justify-center mt-1 ${isUser ? 'bg-slate-200 text-slate-600' : 'bg-indigo-100 text-indigo-600'}`;
-                avatar.innerHTML = isUser ? '<i class="fa-solid fa-user text-xs"></i>' : '<i class="fa-solid fa-robot text-xs"></i>';
-                
-                const bubble = document.createElement('div');
-                bubble.className = `px-4 py-3 rounded-2xl shadow-sm text-sm ${isUser ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white border border-slate-200 text-slate-700 rounded-tl-none'}`;
-                
-                let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                formattedText = formattedText.replace(/\n/g, '<br>');
-                bubble.innerHTML = formattedText;
-
-                msgDiv.appendChild(avatar);
-                msgDiv.appendChild(bubble);
-                chatMessages.appendChild(msgDiv);
-                
-                chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
-            }
-
-            function showLoading() {
-                const loadingDiv = document.createElement('div');
-                loadingDiv.id = 'chat-loading';
-                loadingDiv.className = 'flex items-start gap-2 max-w-[85%] chat-message';
-                loadingDiv.innerHTML = `
-                    <div class="w-8 h-8 rounded-full bg-indigo-100 shrink-0 flex items-center justify-center text-indigo-600 mt-1">
-                        <i class="fa-solid fa-robot text-xs"></i>
-                    </div>
-                    <div class="bg-white border border-slate-200 px-4 py-4 rounded-2xl rounded-tl-none shadow-sm flex gap-1 items-center h-[46px]">
-                        <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
-                        <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
-                        <div class="w-2 h-2 bg-indigo-400 rounded-full typing-dot"></div>
-                    </div>
-                `;
-                chatMessages.appendChild(loadingDiv);
-                chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
-            }
-
-            function hideLoading() {
-                const loadingDiv = document.getElementById('chat-loading');
-                if (loadingDiv) loadingDiv.remove();
-            }
-
-            async function callGeminiAPI(message) {
-                const apiKey = ""; 
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-                
-                const payload = {
-                    contents: [...chatHistory, { role: "user", parts: [{ text: message }] }],
-                    systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] }
-                };
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                
-                if (!response.ok) throw new Error('API Error');
-                
-                const data = await response.json();
-                if (data.candidates && data.candidates[0].content) {
-                    return data.candidates[0].content.parts[0].text;
-                }
-                throw new Error('Invalid response structure');
-            }
-
-            if (chatForm) {
-                chatForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-                    const message = chatInput.value.trim();
-                    if (!message) return;
-
-                    chatInput.value = '';
-                    chatInput.style.height = '';
-                    chatSendBtn.disabled = true;
-                    appendMessage(message, true);
-                    showLoading();
-
-                    try {
-                        const responseText = await callGeminiAPI(message);
-                        chatHistory.push({ role: "user", parts: [{ text: message }] });
-                        chatHistory.push({ role: "model", parts: [{ text: responseText }] });
-                        hideLoading();
-                        appendMessage(responseText, false);
-                    } catch (error) {
-                        hideLoading();
-                        appendMessage("Извините, произошла ошибка при соединении с сервером. Попробуйте задать вопрос немного позже.", false);
-                    } finally {
-                        chatSendBtn.disabled = false;
-                        chatInput.focus();
-                    }
-                });
-            }
-
-            if (chatInput) {
-                chatInput.addEventListener('input', function() {
-                    this.style.height = '';
-                    this.style.height = Math.min(this.scrollHeight, 120) + 'px';
-                });
-                chatInput.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                        e.preventDefault();
-                        chatForm.dispatchEvent(new Event('submit'));
-                    }
-                });
-            }
         });
     </script>
 </body>
